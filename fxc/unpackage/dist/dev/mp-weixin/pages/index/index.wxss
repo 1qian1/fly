@@ -1,0 +1,83 @@
+
+.container.data-v-57280228 {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
+.profile-section.data-v-57280228 {
+  background-color: #FFEDE7;
+  padding: 20rpx;
+}
+.profile-header.data-v-57280228 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.check-icon.data-v-57280228, .settings-icon.data-v-57280228 {
+  font-size: 28rpx;
+}
+.profile-title.data-v-57280228 {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.cards-container.data-v-57280228 {
+  display: flex;
+  justify-content: space-around;
+}
+.card.data-v-57280228 {
+  background-color: #ffffff;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-title.data-v-57280228 {
+  color: #666666;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.card-content.data-v-57280228 {
+  display: flex;
+  align-items: center;
+}
+.play-icon.data-v-57280228 {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+}
+.review-button.data-v-57280228 {
+  background-color: #5BC8AF;
+  color: white;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+.feature-list.data-v-57280228 {
+  margin-top: 20rpx;
+}
+.feature-item.data-v-57280228 {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #ffffff;
+  margin-bottom: 2rpx;
+}
+.feature-icon.data-v-57280228 {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.feature-text.data-v-57280228 {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333333;
+}
+.feature-count.data-v-57280228 {
+  font-size: 24rpx;
+  color: #999999;
+}
+

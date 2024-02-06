@@ -1,0 +1,233 @@
+{
+  "edge": [
+    {"source": "1", "target": "2", "size": 10},
+    {"source": "13", "target": "15", "size": 5},
+    {"source": "20", "target": "9", "size": 20},
+    {"source": "6", "target": "9", "size": 5},
+    {"source": "8", "target": "6", "size": 10},
+    {"source": "11", "target": "15", "size": 5},
+    {"source": "6", "target": "2", "size": 10},
+    {"source": "18", "target": "15", "size": 5},
+    {"source": "15", "target": "9", "size": 20},
+    {"source": "16", "target": "7", "size": 5},
+    {"source": "18", "target": "6", "size": 10},
+    {"source": "12", "target": "5", "size": 5}
+  ],
+
+  "node": [
+    {
+      "id": "1",
+      "label": "1"
+      
+    },
+    {
+      "id": "2",
+      "label": "2"
+      
+     
+    },
+    {
+      "id": "3",
+      "label": "3"
+      
+     
+    },
+    {
+      "id": "4",
+      "label": "4"
+      
+     
+    },
+    {
+      "id": "5",
+      "label": "5"
+      
+     
+    },
+    {
+      "id": "6",
+      "label": "6"
+      
+    },
+    {
+      "id": "7",
+      "label": "7"
+      
+    },
+    {
+      "id": "8",
+      "label": "8"
+      
+    },
+    {
+      "id": "9",
+      "label": "9"
+      
+    },
+    {
+      "id": "10",
+      "label": "10"
+    },
+    {
+      "id": "11",
+      "label": "11"
+       
+    },
+    {
+      "id": "12",
+      "label": "12"
+       
+    },
+    {
+      "id": "13",
+      "label": "13"
+    },
+    {
+      "id": "14",
+      "label": "14"
+       
+    },
+    {
+      "id": "15",
+      "label": "15"
+       
+    },
+    {
+      "id": "16",
+      "label": "16"
+       
+    },
+    {
+      "id": "17",
+      "label": "17"
+       
+    },
+    {
+      "id": "18",
+      "label": "18"
+
+    },
+    {
+      "id": "19",
+      "label": "19"
+       
+    },
+    {
+      "id": "20",
+      "label": "20"
+       
+    }
+  ],
+
+  "count": [
+    {
+      "name": "转账总金额",
+      "value": 2866515,
+      "icon": "success",
+      "color": "#2ec7c9"
+    },
+    {
+      "name": "转出总金额",
+      "value": 1561565,
+      "icon": "star-on",
+      "color": "#ffb980"
+    },
+    {
+      "name": "转入总金额",
+      "value": 1641615,
+      "icon": "s-goods",
+      "color": "#5ab1ef"
+    },
+    {
+      "name": "大额交易数",
+      "value": 1234,
+      "icon": "success",
+      "color": "#2ec7c9"
+    },
+    {
+      "name": "最常联系人",
+      "value": 210,
+      "icon": "star-on",
+      "color": "#ffb980"
+    },
+    {
+      "name": "转账总次数",
+      "value": 1234,
+      "icon": "s-goods",
+      "color": "#5ab1ef"
+    }
+  ],
+  "name": ["杨清", "杨木木", "赵南星", "朱离", "沈海辰"],
+  "va":[20000, 15500, 15000, 10000, 8000],
+  "data": [
+    { "value": 1048, "name": "转帐存入" },
+    { "value": 735, "name": "转帐支取" },
+    { "value": 580, "name": "跨行转出" },
+    { "value": 484, "name": "电子汇入" },
+    { "value": 300, "name": "跨行转出" }
+  ],
+  "sang": [
+    {
+      "name": "沈海辰"
+    },
+    {
+      "name": "施璐"
+    },
+    {
+      "name": "杨木木"
+    },
+    {
+      "name": "杨晴"
+    },
+    {
+      "name": "赵南星"
+    },
+    {
+      "name": "朱离"
+    }
+  ],
+  "link": [
+    {
+      "source": "沈海辰",
+      "target": "朱离",
+      "value": 500
+    },
+    {
+      "source": "杨木木",
+      "target": "杨晴",
+      "value": 300
+    },
+    {
+      "source": "施璐",
+      "target": "赵南星",
+      "value": 800
+    },
+    {
+      "source": "朱离",
+      "target": "杨晴",
+      "value": 400
+    },
+    {
+      "source": "杨晴",
+      "target": "施璐",
+      "value": 900
+    },
+    {
+      "source": "杨木木",
+      "target": "施璐",
+      "value": 200
+    }
+  ],
+
+
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "edges": [
+    {"source": "1", "target": "2", "size": 10},
+    {"source": "13", "target": "15", "size": 5},
+    {"source": "20", "target": "9", "size": 20},
+    {"source": "6", "target": "9", "size": 5},
+    {"source": "8", "target": "6", "size": 10},
+    {"source": "11", "target": "15", "size": 5},
+
+    {"source": "6", "target": "2", "size": 10},
+    {"source": "18", "target": "15", "size": 5},
+    {"source": "15", "target": "9", "size": 20},
+    {"source": "16", "target": "7", "size": 5},
+    {"source": "18", "target": "6", "size": 10},
+    {"source": "12", "target": "5", "size": 5}
+  ]
+}

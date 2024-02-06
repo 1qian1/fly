@@ -1,0 +1,15 @@
+server:
+  port: 8084
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/qing?characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+mybatis:
+  # mapper????
+  mapper-locations: classpath:mapper/*.xml
