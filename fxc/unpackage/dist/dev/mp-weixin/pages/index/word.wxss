@@ -1,0 +1,29 @@
+
+.word-name-laba {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  margin-right: 10px; /* 设置间距 */
+}
+.word-container {
+  margin-top: 20px;
+}
+.word {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.word-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.word-info {
+  font-size: 16px;
+}
+.word-info text {
+  display: block;
+  margin-bottom: 5px;
+}
+

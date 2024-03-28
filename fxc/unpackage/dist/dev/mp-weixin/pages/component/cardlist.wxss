@@ -1,0 +1,33 @@
+
+.card-list.data-v-67007cb9 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card.data-v-67007cb9 {
+  width: 48%;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+	 border: 1rpx solid #ddd; /* 添加边框 */
+	 box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+.card-cover.data-v-67007cb9 {
+  width: 100%;
+  height: 200rpx;
+  object-fit: cover;
+  margin-bottom: 10rpx;
+}
+.card-content.data-v-67007cb9 {
+  padding:0 20rpx;
+}
+.card-title.data-v-67007cb9 {
+  font-size: 18rpx;
+  font-weight: bold;
+}
+.card-summary.data-v-67007cb9 {
+  font-size: 14rpx;
+  color: #666666;
+  margin: 0;
+}
+

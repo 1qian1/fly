@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/word/word-display"
+    "pages/index/word",
+    "pages/index/read",
+    "pages/index/write",
+    "pages/component/article",
+    "pages/index/mine"
   ],
   "subPackages": [],
   "window": {
@@ -19,14 +23,32 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home.png"
+        "iconPath": "static/img/list.png",
+        "selectedIconPath": "static/img/list.png"
       },
       {
-        "pagePath": "pages/word/word-display",
-        "text": "单词展示",
-        "iconPath": "static/list.png",
-        "selectedIconPath": "static/list.png"
+        "pagePath": "pages/index/word",
+        "text": "单词",
+        "iconPath": "static/img/list.png",
+        "selectedIconPath": "static/img/list.png"
+      },
+      {
+        "pagePath": "pages/index/read",
+        "text": "阅读",
+        "iconPath": "static/img/list.png",
+        "selectedIconPath": "static/img/list.png"
+      },
+      {
+        "pagePath": "pages/index/write",
+        "text": "写作",
+        "iconPath": "static/img/list.png",
+        "selectedIconPath": "static/img/list.png"
+      },
+      {
+        "pagePath": "pages/index/mine",
+        "text": "我的",
+        "iconPath": "static/img/list.png",
+        "selectedIconPath": "static/img/list.png"
       }
     ]
   },

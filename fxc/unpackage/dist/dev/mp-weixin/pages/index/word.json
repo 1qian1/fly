@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "单词",
+  "usingComponents": {
+    "laba": "/pages/component/laba",
+    "lunbo": "/pages/component/lunbo"
+  }
+}

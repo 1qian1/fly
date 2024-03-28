@@ -1,0 +1,21 @@
+
+.container.data-v-72bcecbb {
+  padding: 20rpx;
+}
+.cover.data-v-72bcecbb {
+  width: 100%;
+  height: 300rpx;
+  object-fit: cover;
+  margin-bottom: 20rpx;
+}
+.title.data-v-72bcecbb {
+  display: flex;
+  justify-content: center; 
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.content.data-v-72bcecbb {
+  line-height: 1.5;
+}
+

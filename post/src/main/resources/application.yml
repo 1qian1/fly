@@ -10,6 +10,12 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 mybatis:
   # mapper????
   mapper-locations: classpath:mapper/*.xml
+swagger:
+  enable: true

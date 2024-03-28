@@ -1,0 +1,1 @@
+<view class="container data-v-72bcecbb"><image class="cover data-v-72bcecbb" src="{{article.cover}}"></image><text class="title data-v-72bcecbb">{{article.title}}</text><view class="content data-v-72bcecbb"><text class="data-v-72bcecbb">{{article.content}}</text></view></view>
