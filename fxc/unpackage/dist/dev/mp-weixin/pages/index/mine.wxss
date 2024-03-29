@@ -1,7 +1,9 @@
 
 .container.data-v-3f47feae {
+		
 		padding: 20px;
 }
+
 
 	/* 头像和昵称 */
 .avatar-container.data-v-3f47feae {
@@ -19,6 +21,7 @@
 		font-size: 18px;
 		margin-top: 10px;
 }
+
 
 	/* 单词等组件 */
 .big-card.data-v-3f47feae {
@@ -39,11 +42,13 @@
 		/* 添加下划线 */
 }
 
+
 	/* 最后一个 .small-card 不显示底部下划线 */
 .small-card.data-v-3f47feae:last-child {
 		border-bottom: none;
 		/* 最后一个不显示底部下划线 */
 }
+
 
 	/* 	选择卡片 */
 .select-card.data-v-3f47feae {
@@ -75,6 +80,7 @@
 		border: 1px solid #f9f9f9;
 }
 
+
 	/* 遮罩层样式 */
 .mask.data-v-3f47feae {
 		position: fixed;
@@ -88,10 +94,12 @@
 		/* 确保在卡片之上 */
 }
 
+
 	/* 关闭按钮样式 */
 .close-button.data-v-3f47feae {
 		cursor: pointer;
 }
+
 
 	/* 选择内容 */
 .ch.data-v-3f47feae {
@@ -107,6 +115,7 @@
 		border-radius: 4px;
 		/* 圆角 */
 }
+
 
 	/* 	发音 */
 .pronunciation-buttons.data-v-3f47feae {

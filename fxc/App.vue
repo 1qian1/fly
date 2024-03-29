@@ -8,11 +8,14 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+		
 	}
 </script>
 
 <style>
 	/*每个页面公共css */
-	
+	body {
+	  background-color: #f0f4e4;
+	}
 </style>

@@ -1,29 +1,46 @@
 
-.word-name-laba {
-  display: flex;
-  align-items: center; /* 垂直居中 */
-  margin-right: 10px; /* 设置间距 */
+.container.data-v-33526fe0 {
+
+		height: 100vh;
 }
-.word-container {
-  margin-top: 20px;
+.word.data-v-33526fe0 {
+		font-size: 24px;
+		font-weight: bold;
 }
-.word {
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.word-name-laba.data-v-33526fe0 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 }
-.word-name {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 5px;
+.word-info.data-v-33526fe0 {
+		margin-top: 10px;
+		font-size: 16px;
 }
-.word-info {
-  font-size: 16px;
+.word-info text.data-v-33526fe0 {
+		display: block;
+		margin-bottom: 5px;
 }
-.word-info text {
-  display: block;
-  margin-bottom: 5px;
+.swiper.data-v-33526fe0 {
+		height: 100%;
 }
+.bc-container.data-v-33526fe0 {
+		margin-top: 20px;
+	   display: flex;
+	   align-items: center;
+}
+
+	/* 	词频 */
+.bc.data-v-33526fe0{
+		 
+	  width: 3px;
+	  height: 10px;
+	  margin-right: 1px; /* 将间距调整为1% */
+	  background-color: #BFE5BF;
+	  border-radius: 2px; /* 添加圆角 */
+}
+.bar.data-v-33526fe0:last-child {
+	  margin-right: 0; /* 最后一个小长条去掉右边距 */
+}
+	
 

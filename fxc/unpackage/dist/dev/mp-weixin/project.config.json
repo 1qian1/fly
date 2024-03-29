@@ -18,7 +18,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.5",
+  "libVersion": "3.4.0",
   "appid": "wx6d9545bdc4e7d178",
   "projectname": "fxc",
   "condition": {},

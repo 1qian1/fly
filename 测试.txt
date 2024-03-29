@@ -8,3 +8,4 @@ git commit -m '本次提交的注释说明'
  
 git pull
 git push
+git log

@@ -1,6 +1,6 @@
 <template>
 	<view>
-	<i class="iconfont" style="color: #00aaff;font-size:16px;margin-left:20px;" @click="playSound">&#xe600</i>
+	<i class="iconfont" style="color: #55ff7f;font-size:16px;margin-left:8px;" @click="playSound">&#xe600</i>
 	</view>
 </template>
 

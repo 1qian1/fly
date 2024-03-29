@@ -1,1 +1,1 @@
-<view class="data-v-6c34c7ff"><view data-event-opts="{{[['tap',[['playSound',['$event']]]]]}}" class="iconfont _i data-v-6c34c7ff" style="color:#00aaff;font-size:16px;margin-left:20px;" bindtap="__e"></view></view>
+<view class="data-v-6c34c7ff"><view data-event-opts="{{[['tap',[['playSound',['$event']]]]]}}" class="iconfont _i data-v-6c34c7ff" style="color:#55ff7f;font-size:16px;margin-left:8px;" bindtap="__e"></view></view>

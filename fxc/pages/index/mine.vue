@@ -110,9 +110,12 @@
 </script>
 
 <style scoped>
-	.container {
+.container {
+		
 		padding: 20px;
+		
 	}
+
 
 	/* 头像和昵称 */
 	.avatar-container {

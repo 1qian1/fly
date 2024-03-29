@@ -46,9 +46,10 @@ export default {
 
 <style scoped>
 .container {
-	 background-color: #bfe5bf; 
-  padding: 20rpx;
-}
+	
+		height: 100vh;
+	}
+
 
 .content {
 	
