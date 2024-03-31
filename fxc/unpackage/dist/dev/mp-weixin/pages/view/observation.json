@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "见闻",
+  "usingComponents": {
+    "lunbo": "/pages/component/lunbo",
+    "cardlist": "/pages/component/cardlist"
+  }
+}

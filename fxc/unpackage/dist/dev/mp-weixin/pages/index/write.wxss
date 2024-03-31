@@ -1,20 +1,185 @@
 
-.bc-container.data-v-9e8a410e {
-	margin-top: 20px;
-	margin-left: 20px;
-  display: flex;
-  align-items: center;
-}
-.bc.data-v-9e8a410e{
-  width: 3px;
-  height: 10px;
-  margin-right: 1px; /* 将间距调整为1% */
-  background-color: #BFE5BF;
-  border-radius: 2px; /* 添加圆角 */
-}
-.bar.data-v-9e8a410e:last-child {
-  margin-right: 0; /* 最后一个小长条去掉右边距 */
-}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* 样式可自行修改 */
+.message.data-v-9e8a410e {
+ 	border: 2px solid #ff8d2a;
+ 	padding: 10px;
+ 	margin-left: 5%;
+ 	margin-top: 4%;
+ 	margin-bottom: 4%;
+ 	border-top: 0;
+ 	border-right: 0;
+ 	border-bottom: 0;
+}
+.message-content.data-v-9e8a410e {
+ 	display: flex;
+ 	flex-direction: column;
+}
+.content.data-v-9e8a410e {
+ 	font-size: 16px;
+ 	margin-bottom: 10px;
+}
+.source.data-v-9e8a410e {
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	font-size: 12px;
+ 	color: #666;
+}
+.floating-button.data-v-9e8a410e {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 10%;
+	right: 20px;
+	width: 45px;
+	height: 45px;
+	line-height: 60px;
+	background-color: rgba(255, 255, 255, 0.7);
+	/* 白色，透明度为 0.8 */
+	
+	text-align: center;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+	z-index: 9999;
+	/* 确保按钮在页面上其他元素之上 */
+}
+.input-dialog.data-v-9e8a410e {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+   z-index: 9998; /* 确保在按钮之上，但比底层页面低 */
+}
+.input-container.data-v-9e8a410e {
+   width: 80%;
+   max-width: 400px;
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.input-container textarea.data-v-9e8a410e {
+   width: 100%;
+   height: 100px;
+   margin-bottom: 20px;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   resize: none;
+}
+.button-container.data-v-9e8a410e {
+   display: flex;
+   justify-content: space-between;
+}
+.button-container button.data-v-9e8a410e {
+   padding: 10px 20px;
+   border-radius: 4px;
+   cursor: pointer;
+}
 

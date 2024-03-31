@@ -43,7 +43,7 @@
 		   // 进入文章浏览界面
 		   goToArticle(article) {
 		     uni.navigateTo({
-		       url: '/pages/component/article?id=' + article.id
+		       url: '/pages/view/article?id=' + article.id
 		     });
 		   },
 		   // 生成随机颜色

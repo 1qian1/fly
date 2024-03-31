@@ -4,7 +4,10 @@
     "pages/index/word",
     "pages/index/read",
     "pages/index/write",
-    "pages/component/article",
+    "pages/view/article",
+    "pages/view/observation",
+    "pages/view/questionAnswer",
+    "pages/view/oneWord",
     "pages/index/mine"
   ],
   "subPackages": [],
@@ -22,31 +25,31 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
+        "text": "闪烁",
         "iconPath": "static/img/11.png",
         "selectedIconPath": "static/img/12.png"
       },
       {
         "pagePath": "pages/index/word",
-        "text": "单词",
+        "text": "萤火",
         "iconPath": "static/img/21.png",
         "selectedIconPath": "static/img/22.png"
       },
       {
         "pagePath": "pages/index/read",
-        "text": "阅读",
+        "text": "温然",
         "iconPath": "static/img/31.png",
         "selectedIconPath": "static/img/32.png"
       },
       {
         "pagePath": "pages/index/write",
-        "text": "写作",
+        "text": "便著",
         "iconPath": "static/img/41.png",
         "selectedIconPath": "static/img/42.png"
       },
       {
         "pagePath": "pages/index/mine",
-        "text": "我的",
+        "text": "星河",
         "iconPath": "static/img/51.png",
         "selectedIconPath": "static/img/52.png"
       }

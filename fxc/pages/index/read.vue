@@ -61,7 +61,7 @@ export default {
 .english-paragraph {
 	display: flex;
   margin-bottom: 20rpx; /* 英语文本下边距 */
-  text-shadow: 0 0 5rpx rgba(0,0,0,0.3); /* 给汉语字体添加虚化效果 */
+  text-shadow: 0 0 5rpx rgba(0,0,0,0.1); /* 给汉语字体添加虚化效果 */
 }
 
 .chinese-paragraph {

@@ -1,7 +1,4 @@
 {
-  "navigationBarTitleText": "首页",
-  "usingComponents": {
-    "lunbo": "/pages/component/lunbo",
-    "cardlist": "/pages/component/cardlist"
-  }
+  "navigationBarTitleText": "闪烁",
+  "usingComponents": {}
 }

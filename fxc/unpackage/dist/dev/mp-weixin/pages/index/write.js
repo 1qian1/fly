@@ -141,7 +141,98 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {};
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  data: function data() {
+    return {
+      messages: [{
+        content: "世事无常，生命是短暂的，我们都活在生死边缘，哪怕只有一天，一刹那，我们都想要活下去。",
+        date: "23年7月5日",
+        source: "铃芽户缔"
+      }, {
+        content: "有的时候，这个世界看上去是灰色的。不像梦里，那么五彩斑斓。可是就算是这样，也一定有一些光亮在等着你，哪怕只是些很小的瞬间，也值得你努力活下去。",
+        date: "23年3月26日",
+        source: "深海"
+      }, {
+        content: "世界上最无耻最阴险、最歹毒的赞美，就是用穷人的艰辛和苦难，当做励志故事愚弄底层人。",
+        date: "22年7月30日",
+        source: "王朔"
+      }, {
+        content: "井底之蛙，不知大海之宽广，却知晓天空之蓝。",
+        date: "20年12月19日",
+        source: "知晓天空之蓝的人啊"
+      }, {
+        content: "没有任何一个成功不冒风险，直面风险，豁出去干。成功往往不是规划出来的，危机是你想不到的机会。",
+        date: "20年8月12日",
+        source: "雷军"
+      }],
+      showDialog: false,
+      newMessage: ""
+    };
+  },
+  methods: {
+    // 点击悬浮按钮显示输入框
+    showInputDialog: function showInputDialog() {
+      this.showDialog = true;
+    },
+    // 点击确认发布按钮
+    publishMessage: function publishMessage() {
+      if (this.newMessage.trim() !== "") {
+        var currentDate = this.getCurrentDate();
+        var newMessage = {
+          content: this.newMessage,
+          date: currentDate,
+          source: "用户"
+        };
+        // 将新留言添加到留言列表的顶部
+        this.messages.unshift(newMessage);
+        this.newMessage = ""; // 清空输入框
+      }
+
+      this.showDialog = false; // 关闭输入框
+    },
+    // 点击取消按钮
+    cancelMessage: function cancelMessage() {
+      this.showDialog = false; // 关闭输入框
+    },
+    // 获取当前日期
+    getCurrentDate: function getCurrentDate() {
+      var currentDate = new Date();
+      var year = currentDate.getFullYear();
+      var month = currentDate.getMonth() + 1;
+      var day = currentDate.getDate();
+      return "".concat(year, "\u5E74").concat(month, "\u6708").concat(day, "\u65E5");
+    }
+  }
+};
 exports.default = _default;
 
 /***/ }),

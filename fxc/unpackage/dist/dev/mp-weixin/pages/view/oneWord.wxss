@@ -1,0 +1,47 @@
+
+.message.data-v-6cfd5b1f {
+	border: 2px solid #ff8d2a;
+	padding: 10px;
+	margin-left: 5%;
+	margin-top: 4%;
+	margin-bottom: 4%;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.message-content.data-v-6cfd5b1f {
+	display: flex;
+	flex-direction: column;
+}
+.content.data-v-6cfd5b1f {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.source.data-v-6cfd5b1f {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 12px;
+	color: #666;
+}
+.floating-button.data-v-6cfd5b1f {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 10%;
+	right: 20px;
+	width: 45px;
+	height: 45px;
+	line-height: 60px;
+	background-color: rgba(255, 255, 255, 0.7);
+	/* 白色，透明度为 0.8 */
+	
+	text-align: center;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+	z-index: 9999;
+	/* 确保按钮在页面上其他元素之上 */
+}
+

@@ -1,5 +1,88 @@
 
-.container.data-v-57280228 {
-  padding: 20rpx;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 卡片容器样式 */
+.card {
+	/* 水平居中对齐*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 48%;
+	/* 设置卡片宽度 */
+	height: 80px;
+	/* 设置卡片高度 */
+	background-color: #f0f0f0;
+	/* 设置卡片背景色 */
+	border-radius: 10px;
+	/* 设置卡片边框圆角 */
+	padding: 10px;
+	/* 设置卡片内边距 */
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	/* 设置卡片阴影 */
+}
+/* 卡片内容样式 */
+.card-content {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.title {
+	font-size: 16px;
+	font-weight: bold;
+}
+.description {
+	font-size: 14px;
+	color: #666;
 }
 
