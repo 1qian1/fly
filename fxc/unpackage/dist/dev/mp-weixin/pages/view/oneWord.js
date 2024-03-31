@@ -156,10 +156,32 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       messages: [{
+        content: "而在这里，你会看到一个不同的我，一个在生活中发现美，感受痛苦，洞察人性的我。",
+        date: "24年3月31日",
+        source: "雨爱"
+      }, {
+        content: "当第一颗卫星飞向大气层外，我们便以为自己终有一日会征服宇宙。",
+        date: "24年3月31日",
+        source: "雨爱"
+      }, {
         content: "世事无常，生命是短暂的，我们都活在生死边缘，哪怕只有一天，一刹那，我们都想要活下去。",
         date: "23年7月5日",
         source: "铃芽户缔"
@@ -179,13 +201,43 @@ var _default = {
         content: "没有任何一个成功不冒风险，直面风险，豁出去干。成功往往不是规划出来的，危机是你想不到的机会。",
         date: "20年8月12日",
         source: "雷军"
-      }]
+      }],
+      showDialog: false,
+      newMessage: ""
     };
   },
   methods: {
-    handleButtonClick: function handleButtonClick() {
-      // 点击按钮时的操作
-      console.log('按钮被点击了！');
+    // 点击悬浮按钮显示输入框
+    showInputDialog: function showInputDialog() {
+      this.showDialog = true;
+    },
+    // 点击确认发布按钮
+    publishMessage: function publishMessage() {
+      if (this.newMessage.trim() !== "") {
+        var currentDate = this.getCurrentDate();
+        var newMessage = {
+          content: this.newMessage,
+          date: currentDate,
+          source: "用户"
+        };
+        // 将新留言添加到留言列表的顶部
+        this.messages.unshift(newMessage);
+        this.newMessage = ""; // 清空输入框
+      }
+
+      this.showDialog = false; // 关闭输入框
+    },
+    // 点击取消按钮
+    cancelMessage: function cancelMessage() {
+      this.showDialog = false; // 关闭输入框
+    },
+    // 获取当前日期
+    getCurrentDate: function getCurrentDate() {
+      var currentDate = new Date();
+      var year = currentDate.getFullYear();
+      var month = currentDate.getMonth() + 1;
+      var day = currentDate.getDate();
+      return "".concat(year, "\u5E74").concat(month, "\u6708").concat(day, "\u65E5");
     }
   }
 };
