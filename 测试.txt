@@ -9,3 +9,7 @@ git commit -m '本次提交的注释说明'
 git pull
 git push
 git log
+
+//删除知识图谱
+MATCH (n)
+DETACH DELETE n

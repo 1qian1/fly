@@ -143,7 +143,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var laba = function laba() {
   __webpack_require__.e(/*! require.ensure | pages/component/laba */ "pages/component/laba").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/component/laba.vue */ 123));
+    return resolve(__webpack_require__(/*! @/pages/component/laba.vue */ 114));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

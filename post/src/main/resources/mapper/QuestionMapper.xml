@@ -1,0 +1,41 @@
+<!-- QuestionMapper.xml -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.QuestionMapper">
+    <resultMap id="questionResultMap" type="com.example.demo.entity.Question">
+        <id property="questionId" column="question_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="questionContent" column="question_content"/>
+        <result property="questionDate" column="question_date"/>
+        <result property="userNickname" column="userNickname"/>
+        <result property="answerCount" column="answerCount"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="questionResultMap">
+        SELECT q.question_id, q.user_id, q.question_content, q.question_date, u.nickname AS userNickname,
+               COUNT(a.answer_id) AS answerCount
+        FROM questions q
+                 JOIN users u ON q.user_id = u.user_id
+                 LEFT JOIN answers a ON q.question_id = a.question_id
+        GROUP BY q.question_id
+    </select>
+
+    <select id="findById" resultMap="questionResultMap">
+        SELECT * FROM questions WHERE question_id = #{questionId}
+    </select>
+
+    <insert id="add" parameterType="com.example.demo.entity.Question">
+        INSERT INTO questions (user_id, question_content, question_date)
+        VALUES (#{userId}, #{questionContent}, #{questionDate})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.Question">
+        UPDATE questions SET user_id = #{userId}, question_content = #{questionContent},
+                             question_date = #{questionDate} WHERE question_id = #{questionId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM questions WHERE question_id = #{questionId}
+    </delete>
+</mapper>

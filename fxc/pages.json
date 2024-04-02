@@ -60,6 +60,14 @@
 
 		},
 		{
+			"path": "pages/view/prodetail",
+			"style": {
+				"navigationBarTitleText": "问题详情"
+			}
+		
+		
+		},
+		{
 			"path": "pages/view/oneWord",
 			"style": {
 				"navigationBarTitleText": "留言"

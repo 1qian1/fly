@@ -1,0 +1,24 @@
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    nickname VARCHAR(255),
+    password VARCHAR(255),
+    email VARCHAR(255)
+    -- 其他字段...
+);
+
+CREATE TABLE Answers (
+    answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT,
+    user_id INT,
+    answer_content TEXT,
+    answer_date DATE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    -- 其他字段和约束...
+);
+CREATE TABLE Questions (
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    question_content TEXT,
+    question_date DATE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);

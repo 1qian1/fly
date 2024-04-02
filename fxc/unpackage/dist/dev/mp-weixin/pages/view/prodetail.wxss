@@ -10,11 +10,6 @@
   font-weight: bold;
   color: #333;
 }
-.question-info {
-  font-size: 14px;
-  color: #666;
-  margin-top: 10rpx;
-}
 .answer-list {
   margin-top: 20rpx;
 }
@@ -29,5 +24,13 @@
 .answer-content {
   font-size: 16px;
   color: #666;
+}
+.write-answer-btn {
+  background-color: #007AFF;
+  color: #FFF;
+  text-align: center;
+  padding: 10rpx;
+  border-radius: 5rpx;
+  margin-top: 20rpx;
 }
 
