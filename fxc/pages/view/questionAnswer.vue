@@ -1,94 +1,360 @@
 <template>
-  <view class="question-detail">
-    <text class="question-title">{{ question.title }}</text>
-    <text class="question-status" :class="{ 'unanswered': question.status === 'unanswered', 'answered': question.status === 'answered' }">{{ question.status === 'unanswered' ? '未回答' : '已回答' }}</text>
-    <view class="question-content">
-      <text>{{ question.content }}</text>
-    </view>
-    <view v-if="question.status === 'unanswered'" class="answer-form">
-      <textarea v-model="answer" placeholder="请输入您的回答"></textarea>
-      <button @click="submitAnswer">提交回答</button>
-    </view>
-    <view v-else class="answer-content">
-      <text>回答内容：{{ question.answer || '暂无回答' }}</text>
-    </view>
-  </view>
+	<view class="chat">
+		<scroll-view :style="{height: `${windowHeight-inputHeight}rpx`}" id="scrollview" scroll-y="true"
+			:scroll-top="scrollTop" class="scroll-view">
+			<!-- 聊天主体 -->
+			<view id="msglistview" class="chat-body">
+				<!-- 聊天记录 -->
+				<view v-for="(item,index) in msgList" :key="index">
+					<!-- 自己发的消息 -->
+					<view class="item self" v-if="item.userContent != ''">
+						<!-- 文字内容 -->
+						<view class="content right">
+							{{item.userContent}}
+						</view>
+						<!-- 头像 -->
+						<view class="avatar">
+								 <image src="/static/img/rs.jpg" class="avatar-image"></image>
+						</view>
+					</view>
+					<!-- 机器人发的消息 -->
+					<view class="item Ai" v-if="item.botContent != ''">
+						<!-- 头像 -->
+						<view class="avatar1">
+							 <image src="/static/img/ai.jpg" class="avatar1-image"></image>
+						</view>
+						<!-- 文字内容 -->
+						<view class="content left">
+							{{item.botContent}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 底部消息发送栏 -->
+		<!-- 用来占位，防止聊天消息被发送框遮挡 -->
+		<view class="chat-bottom" :style="{height: `${inputHeight}rpx`}">
+			<view class="send-msg" :style="{bottom:`${keyboardHeight}rpx`}">
+				<view class="uni-textarea">
+					<textarea v-model="chatMsg" maxlength="300" confirm-type="send" @confirm="handleSend"
+						:show-confirm-bar="false" :adjust-position="false" @linechange="sendHeight" @focus="focus"
+						@blur="blur" auto-height></textarea>
+				</view>
+				<button @click="handleSend" class="send-btn">发送</button>
+			</view>
+		</view>
+	</view>
 </template>
-
 <script>
-export default {
-  data() {
-    return {
-      question: null,
-      answer: ''
-    };
-  },
-  mounted() {
-    // 通过路由参数获取问题详情
-    if (this.$route && this.$route.query && this.$route.query.id) {
-      const questionId = this.$route.query.id;
-      this.question = this.getQuestionById(questionId);
-    }
-  },
-  methods: {
-    getQuestionById(id) {
-      // 假设从后端获取问题详情数据
-      return { id: '1', title: '如何学习编程？', status: 'answered', content: '这是一个示例问题，欢迎回答。', answer: '这是一个示例回答。' };
-    },
-    submitAnswer() {
-      // 提交回答
-      this.question.answer = this.answer;
-      this.question.status = 'answered';
-      // 此处可以调用后端接口将回答提交到服务器
-    }
-  }
-};
+	export default {
+		data() {
+			return {
+				//键盘高度
+				keyboardHeight: 0,
+				//底部消息发送高度
+				bottomHeight: 0,
+				//滚动距离
+				scrollTop: 0,
+				userId: '',
+				//发送的消息
+				chatMsg: "",
+				msgList: [{
+						botContent: "hello，请问我有什么可以帮助你的吗？",
+						recordId: 0,
+						titleId: 0,
+						userContent: "",
+						userId: 0
+					},
+					{
+						botContent: "",
+						recordId: 0,
+						titleId: 0,
+						userContent: "你好呀我想问你一件事",
+						userId: 0
+					},
+				]
+			}
+		},
+		updated() {
+			//页面更新时调用聊天消息定位到最底部
+			this.scrollToBottom();
+		},
+		computed: {
+			windowHeight() {
+				return this.rpxTopx(uni.getSystemInfoSync().windowHeight)
+			},
+			// 键盘弹起来的高度+发送框高度
+			inputHeight() {
+				return this.bottomHeight + this.keyboardHeight
+			}
+		},
+		onLoad() {
+			uni.onKeyboardHeightChange(res => {
+				//这里正常来讲代码直接写
+				//this.keyboardHeight=this.rpxTopx(res.height)就行了
+				//但是之前界面ui设计聊天框的高度有点高,为了不让键盘和聊天输入框之间距离差太大所以我改动了一下。
+				this.keyboardHeight = this.rpxTopx(res.height - 30)
+				if (this.keyboardHeight < 0) this.keyboardHeight = 0;
+			})
+		},
+		onUnload() {
+			uni.offKeyboardHeightChange()
+		},
+		methods: {
+			focus() {
+				this.scrollToBottom()
+			},
+			blur() {
+				this.scrollToBottom()
+			},
+			// px转换成rpx
+			rpxTopx(px) {
+				let deviceWidth = wx.getSystemInfoSync().windowWidth
+				let rpx = (750 / deviceWidth) * Number(px)
+				return Math.floor(rpx)
+			},
+			// 监视聊天发送栏高度
+			sendHeight() {
+				setTimeout(() => {
+					let query = uni.createSelectorQuery();
+					query.select('.send-msg').boundingClientRect()
+					query.exec(res => {
+						this.bottomHeight = this.rpxTopx(res[0].height)
+					})
+				}, 10)
+			},
+			// 滚动至聊天底部
+		// 滚动至聊天底部
+		scrollToBottom(e) {
+		    setTimeout(() => {
+		        let query = uni.createSelectorQuery().in(this);
+		        query.select('#scrollview').boundingClientRect();
+		        query.select('#msglistview').boundingClientRect();
+		        query.exec((res) => {
+		            let scrollViewHeight = res[0].height;
+		            let msgListViewHeight = res[1].height;
+		            if (msgListViewHeight > scrollViewHeight) {
+		                // 计算滚动的距离
+		                let scrollTop = msgListViewHeight - scrollViewHeight + this.inputHeight;
+		                this.scrollTop = scrollTop;
+		            }
+		        });
+		    }, 15);
+		},
+			// 发送消息
+			handleSend() {
+				// 如果消息不为空
+				if (!this.chatMsg || !/^\s+$/.test(this.chatMsg)) {
+					let obj = {
+						botContent: "", // 先将对方回答的内容置为空
+						recordId: 0,
+						titleId: 0,
+						userContent: this.chatMsg,
+						userId: 0
+					};
+					this.msgList.push(obj);
+					this.chatMsg = '';
+
+					// 模拟对方回答，延迟一段时间后添加对方的回答消息到 msgList 数组中
+					setTimeout(() => {
+						let botObj = {
+							botContent: "这是对方的回答内容",
+							recordId: 0,
+							titleId: 0,
+							userContent: "",
+							userId: 1 // 假设对方的 userId 为 1
+						};
+						this.msgList.push(botObj);
+						this.scrollToBottom();
+					}, 1000); // 延迟 1 秒后添加对方的回答消息
+				} else {
+					this.$modal.showToast('不能发送空白消息');
+				}
+			},
+		}
+	}
 </script>
+<style lang="scss" scoped>
+	$chatContentbgc: #C2DCFF;
+	$sendBtnbgc: #4F7DF5;
 
-<style scoped>
-.question-detail {
-  padding: 20rpx;
-}
+	view,
+	button,
+	text,
+	input,
+	textarea {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 
-.question-title {
-  font-size: 32rpx;
-  color: #333;
-}
+	/* 聊天消息 */
+	.chat {
+		.scroll-view {
+			::-webkit-scrollbar {
+				display: none;
+				width: 0 !important;
+				height: 0 !important;
+				-webkit-appearance: none;
+				background: transparent;
+				color: transparent;
+			}
 
-.question-status {
-  font-size: 28rpx;
-  color: #999;
-  margin-bottom: 20rpx;
-}
+			// background-color: orange;
+			background-color: #f0f4e4;
 
-.question-content {
-  font-size: 28rpx;
-  color: #333;
-  margin-bottom: 20rpx;
-}
+			.chat-body {
+				display: flex;
+				flex-direction: column;
+				padding-top: 23rpx;
+				// background-color:skyblue;
 
-.answer-form textarea {
-  width: 100%;
-  height: 200rpx;
-  margin-bottom: 20rpx;
-  padding: 10rpx;
-  font-size: 28rpx;
-  border: 1rpx solid #ccc;
-  border-radius: 5rpx;
-}
+				.self {
+					justify-content: flex-end;
+				}
 
-.answer-form button {
-  width: 100%;
-  height: 60rpx;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 28rpx;
-  border: none;
-  border-radius: 5rpx;
-}
+				.item {
+					display: flex;
+					padding: 23rpx 30rpx;
+					// background-color: greenyellow;
 
-.answer-content {
-  font-size: 28rpx;
-  color: #333;
-}
+					.right {
+						background-color: $chatContentbgc;
+					}
+
+					.left {
+						background-color: #FFFFFF;
+					}
+
+					// 聊天消息的三角形
+					.right::after {
+						position: absolute;
+						display: inline-block;
+						content: '';
+						width: 0;
+						height: 0;
+						left: 100%;
+						top: 10px;
+						border: 12rpx solid transparent;
+						border-left: 12rpx solid $chatContentbgc;
+					}
+
+					.left::after {
+						position: absolute;
+						display: inline-block;
+						content: '';
+						width: 0;
+						height: 0;
+						top: 10px;
+						right: 100%;
+						border: 12rpx solid transparent;
+						border-right: 12rpx solid #FFFFFF;
+					}
+
+					.content {
+						position: relative;
+						max-width: 486rpx;
+						border-radius: 8rpx;
+						word-wrap: break-word;
+						padding: 24rpx 24rpx;
+						margin: 0 24rpx;
+						border-radius: 5px;
+						font-size: 32rpx;
+						font-family: PingFang SC;
+						font-weight: 500;
+						color: #333333;
+						line-height: 42rpx;
+					}
+
+					.avatar {
+						display: flex;
+						justify-content: center;
+						width: 78rpx;
+						height: 78rpx;
+						background: $sendBtnbgc;
+						border-radius: 8rpx;
+						overflow: hidden;
+
+						.avatar-image {
+						    width: 100%; /* 图片宽度充满容器 */
+						    height: 100%; /* 图片高度充满容器 */
+						    object-fit: cover; /* 图片适应容器，保持比例不变 */
+						}
+
+					}
+				.avatar1 {
+				    display: flex;
+				    justify-content: center;
+				    align-items: center; /* 添加此行以垂直居中 */
+				    width: 78rpx;
+				    height: 78rpx;
+				    background-color: $sendBtnbgc; /* 修改背景色 */
+				    border-radius: 8rpx; /* 将边框设置为圆形 */
+				    overflow: hidden;
+				
+				    .avatar1-image {
+				        width: 100%; /* 图片宽度充满容器 */
+				        height: 100%; /* 图片高度充满容器 */
+				        object-fit: cover; /* 图片适应容器，保持比例不变 */
+				    }
+				}
+				}
+			}
+		}
+
+		/* 底部聊天发送栏 */
+		.chat-bottom {
+			width: 100%;
+			height: 177rpx;
+			background: #f0f4e4;
+			transition: all 0.1s ease;
+
+
+			.send-msg {
+				display: flex;
+				align-items: flex-end;
+				padding: 16rpx 30rpx;
+				width: 100%;
+				min-height: 177rpx;
+				position: fixed;
+				bottom: 0;
+				background: #f0f4e4;
+				transition: all 0.1s ease;
+			}
+
+			.uni-textarea {
+				padding-bottom: 70rpx;
+
+				textarea {
+					width: 537rpx;
+					min-height: 75rpx;
+					max-height: 500rpx;
+					background: #FFFFFF;
+					border-radius: 8rpx;
+					font-size: 32rpx;
+					font-family: PingFang SC;
+					color: #333333;
+					line-height: 43rpx;
+					padding: 5rpx 8rpx;
+				}
+			}
+
+			.send-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 70rpx;
+				margin-left: 25rpx;
+				width: 128rpx;
+				height: 75rpx;
+				background: $sendBtnbgc;
+				border-radius: 8rpx;
+				font-size: 28rpx;
+				font-family: PingFang SC;
+				font-weight: 500;
+				color: #FFFFFF;
+				line-height: 28rpx;
+			}
+		}
+	}
 </style>

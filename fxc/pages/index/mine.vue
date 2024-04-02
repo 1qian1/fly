@@ -74,7 +74,7 @@
 				],
 				wordCounts: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], // 对应的单词数量
 				userData: {
-					avatar: '/static/img/b1.jpg', // 用户头像
+					avatar: '/static/img/rs.jpg', // 用户头像
 					nickname: 'User123', // 用户昵称
 					selectedBook: 'CET-4 四级词汇', // 用户所选择的单词书
 					message: '您有一条新消息', // 用户的消息

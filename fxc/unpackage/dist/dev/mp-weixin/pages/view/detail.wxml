@@ -1,0 +1,1 @@
+<view><view data-event-opts="{{[['tap',[['goToAnswer',['$event']]]]]}}" bindtap="__e">写回答</view><view><rich-text nodes="{{content}}"></rich-text></view></view>

@@ -24,23 +24,16 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-view.data-v-9e8a410e,
-button.data-v-9e8a410e,
-text.data-v-9e8a410e,
-input.data-v-9e8a410e,
-textarea.data-v-9e8a410e {
+view.data-v-e249c302, button.data-v-e249c302, text.data-v-e249c302, input.data-v-e249c302, textarea.data-v-e249c302 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 /* 聊天消息 */
-.chat.data-v-9e8a410e {
+.chat.data-v-e249c302 {
   /* 底部聊天发送栏 */
 }
-.chat .scroll-view.data-v-9e8a410e {
-  background-color: #f0f4e4;
-}
-.chat .scroll-view.data-v-9e8a410e ::-webkit-scrollbar {
+.chat .scroll-view.data-v-e249c302 ::-webkit-scrollbar {
   display: none;
   width: 0 !important;
   height: 0 !important;
@@ -48,25 +41,25 @@ textarea.data-v-9e8a410e {
   background: transparent;
   color: transparent;
 }
-.chat .scroll-view .chat-body.data-v-9e8a410e {
+.chat .scroll-view .chat-body.data-v-e249c302 {
   display: flex;
   flex-direction: column;
   padding-top: 23rpx;
 }
-.chat .scroll-view .chat-body .self.data-v-9e8a410e {
+.chat .scroll-view .chat-body .self.data-v-e249c302 {
   justify-content: flex-end;
 }
-.chat .scroll-view .chat-body .item.data-v-9e8a410e {
+.chat .scroll-view .chat-body .item.data-v-e249c302 {
   display: flex;
   padding: 23rpx 30rpx;
 }
-.chat .scroll-view .chat-body .item .right.data-v-9e8a410e {
+.chat .scroll-view .chat-body .item .right.data-v-e249c302 {
   background-color: #C2DCFF;
 }
-.chat .scroll-view .chat-body .item .left.data-v-9e8a410e {
+.chat .scroll-view .chat-body .item .left.data-v-e249c302 {
   background-color: #FFFFFF;
 }
-.chat .scroll-view .chat-body .item .right.data-v-9e8a410e::after {
+.chat .scroll-view .chat-body .item .right.data-v-e249c302::after {
   position: absolute;
   display: inline-block;
   content: '';
@@ -77,7 +70,7 @@ textarea.data-v-9e8a410e {
   border: 12rpx solid transparent;
   border-left: 12rpx solid #C2DCFF;
 }
-.chat .scroll-view .chat-body .item .left.data-v-9e8a410e::after {
+.chat .scroll-view .chat-body .item .left.data-v-e249c302::after {
   position: absolute;
   display: inline-block;
   content: '';
@@ -88,7 +81,7 @@ textarea.data-v-9e8a410e {
   border: 12rpx solid transparent;
   border-right: 12rpx solid #FFFFFF;
 }
-.chat .scroll-view .chat-body .item .content.data-v-9e8a410e {
+.chat .scroll-view .chat-body .item .content.data-v-e249c302 {
   position: relative;
   max-width: 486rpx;
   border-radius: 8rpx;
@@ -102,7 +95,7 @@ textarea.data-v-9e8a410e {
   color: #333333;
   line-height: 42rpx;
 }
-.chat .scroll-view .chat-body .item .avatar.data-v-9e8a410e {
+.chat .scroll-view .chat-body .item .avatar.data-v-e249c302 {
   display: flex;
   justify-content: center;
   width: 78rpx;
@@ -111,42 +104,15 @@ textarea.data-v-9e8a410e {
   border-radius: 8rpx;
   overflow: hidden;
 }
-.chat .scroll-view .chat-body .item .avatar .avatar-image.data-v-9e8a410e {
-  width: 100%;
-  /* 图片宽度充满容器 */
-  height: 100%;
-  /* 图片高度充满容器 */
-  object-fit: cover;
-  /* 图片适应容器，保持比例不变 */
+.chat .scroll-view .chat-body .item .avatar image.data-v-e249c302 {
+  align-self: center;
 }
-.chat .scroll-view .chat-body .item .avatar1.data-v-9e8a410e {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* 添加此行以垂直居中 */
-  width: 78rpx;
-  height: 78rpx;
-  background-color: #4F7DF5;
-  /* 修改背景色 */
-  border-radius: 8rpx;
-  /* 将边框设置为圆形 */
-  overflow: hidden;
-}
-.chat .scroll-view .chat-body .item .avatar1 .avatar1-image.data-v-9e8a410e {
-  width: 100%;
-  /* 图片宽度充满容器 */
-  height: 100%;
-  /* 图片高度充满容器 */
-  object-fit: cover;
-  /* 图片适应容器，保持比例不变 */
-}
-.chat .chat-bottom.data-v-9e8a410e {
+.chat .chat-bottom.data-v-e249c302 {
   width: 100%;
   height: 177rpx;
-  background: #f0f4e4;
-  transition: all 0.1s ease;
+  background: #F4F5F7;
 }
-.chat .chat-bottom .send-msg.data-v-9e8a410e {
+.chat .chat-bottom .send-msg.data-v-e249c302 {
   display: flex;
   align-items: flex-end;
   padding: 16rpx 30rpx;
@@ -154,13 +120,12 @@ textarea.data-v-9e8a410e {
   min-height: 177rpx;
   position: fixed;
   bottom: 0;
-  background: #f0f4e4;
-  transition: all 0.1s ease;
+  background: #EDEDED;
 }
-.chat .chat-bottom .uni-textarea.data-v-9e8a410e {
+.chat .chat-bottom .uni-textarea.data-v-e249c302 {
   padding-bottom: 70rpx;
 }
-.chat .chat-bottom .uni-textarea textarea.data-v-9e8a410e {
+.chat .chat-bottom .uni-textarea textarea.data-v-e249c302 {
   width: 537rpx;
   min-height: 75rpx;
   max-height: 500rpx;
@@ -172,7 +137,7 @@ textarea.data-v-9e8a410e {
   line-height: 43rpx;
   padding: 5rpx 8rpx;
 }
-.chat .chat-bottom .send-btn.data-v-9e8a410e {
+.chat .chat-bottom .send-btn.data-v-e249c302 {
   display: flex;
   align-items: center;
   justify-content: center;
