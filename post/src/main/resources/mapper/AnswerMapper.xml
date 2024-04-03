@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AnswerMapper">
+
+    <select id="findAll" resultType="com.example.demo.entity.Answer">
+        SELECT * FROM Answers
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="com.example.demo.entity.Answer">
+        SELECT * FROM Answers WHERE answer_id = #{answerId}
+    </select>
+    <select id="findByqId" parameterType="Integer" resultMap="answerWithUserResultMap">
+        SELECT a.*, u.nickname AS userNickname, q.question_content
+        FROM Answers a
+                 LEFT JOIN Users u ON a.user_id = u.user_id
+                 LEFT JOIN Questions q ON a.question_id = q.question_id
+        WHERE a.question_id = #{questionId}
+    </select>
+
+    <resultMap id="answerWithUserResultMap" type="com.example.demo.entity.Answer">
+        <id column="answer_id" property="answerId"/>
+        <result column="question_id" property="questionId"/>
+        <result column="user_id" property="userId"/>
+        <result column="answer_content" property="answerContent"/>
+        <result column="answer_date" property="answerDate"/>
+        <result column="userNickname" property="userNickname"/>
+        <result column="questionContent" property="question_content"/>
+    </resultMap>
+</mapper>

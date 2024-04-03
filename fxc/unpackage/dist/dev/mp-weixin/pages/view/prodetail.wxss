@@ -1,36 +1,36 @@
 
 .container {
-  padding: 20rpx;
+	padding: 20rpx;
 }
 .question {
-  margin-bottom: 20rpx;
+	margin-bottom: 20rpx;
 }
 .question-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
 }
 .answer-list {
-  margin-top: 20rpx;
+	margin-top: 20rpx;
 }
 .answer-item {
-  margin-bottom: 20rpx;
+	margin-bottom: 20rpx;
 }
 .answer-user {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
 }
 .answer-content {
-  font-size: 16px;
-  color: #666;
+	font-size: 16px;
+	color: #666;
 }
 .write-answer-btn {
-  background-color: #007AFF;
-  color: #FFF;
-  text-align: center;
-  padding: 10rpx;
-  border-radius: 5rpx;
-  margin-top: 20rpx;
+	background-color: #007AFF;
+	color: #FFF;
+	text-align: center;
+	padding: 10rpx;
+	border-radius: 5rpx;
+	margin-top: 20rpx;
 }
 

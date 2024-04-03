@@ -160,52 +160,36 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      question: "有多少种方式可以在Python中创建一个字典？",
-      answers: [{
-        user: "小明",
-        content: "在Python中，可以使用字面量语法、dict() 构造函数、或者推导式等多种方式来创建字典。"
-      }, {
-        user: "张三",
-        content: "Python中创建字典有多种方式，如字面量、dict()构造函数等，选择适合场景的方式即可。"
-      }],
-      date: "2023年5月2日"
+      question: '',
+      answers: [],
+      questionId: '' // 初始化 questionId,
     };
   },
-  mounted: function mounted() {
-    // 从路由参数中获取问题信息
-    var _JSON$parse = JSON.parse(decodeURIComponent(this.$route.query.question)),
-      question = _JSON$parse.question,
-      date = _JSON$parse.date;
-    // 在实际应用中，这里可以通过接口调用从服务器获取相应的回答内容
-    // 这里为了演示，直接从 data 中获取回答内容
-    this.question = question;
-    this.date = date;
-    this.answers = answers; // 这里假设有一个方法来获取对应问题的回答
+  onLoad: function onLoad(query) {
+    // query 是页面加载时获取的参数对象
+    this.questionId = query.questionId;
+    console.log('Received questionId:', this.questionId);
+    // 在这里调用相应的接口，使用 this.questionId 做为参数来获取数据
   },
-
+  mounted: function mounted() {
+    this.fetchQuestions();
+  },
   methods: {
-    goToAnswerPage: function goToAnswerPage() {
-      // 跳转到写回答页面，传递当前问题的信息
-      uni.navigateTo({
-        url: '/pages/view/questionAnswer.vue?question=' + encodeURIComponent(JSON.stringify(this.question))
+    fetchQuestions: function fetchQuestions() {
+      var _this = this;
+      uni.request({
+        url: 'http://localhost:8084/answers/qq/' + this.questionId,
+        // 在 URL 中添加问题ID作为参数,
+        method: 'GET',
+        success: function success(res) {
+          _this.answers = res.data;
+          _this.question = res.data[0].questionContent;
+          console.log(res);
+        },
+        fail: function fail(err) {
+          console.error('Error fetching answers:', err);
+        }
       });
-    },
-    // 模拟获取对应问题的回答内容的方法
-    getAnswers: function getAnswers() {
-      // 实际应用中可以从数据库或者其他数据源获取回答内容
-      // 这里假设有一个固定的数据结构来存储问题和回答
-      var answersData = {
-        "有多少种方式可以在Python中创建一个字典？": [{
-          user: "小明",
-          content: "在Python中，可以使用字面量语法、dict() 构造函数、或者推导式等多种方式来创建字典。"
-        }, {
-          user: "张三",
-          content: "Python中创建字典有多种方式，如字面量、dict()构造函数等，选择适合场景的方式即可。"
-        }]
-        // 其他问题的回答数据...
-      };
-
-      return answersData[this.question];
     }
   }
 };

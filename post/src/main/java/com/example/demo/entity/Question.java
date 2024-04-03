@@ -47,6 +47,7 @@ public class Question {
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
     }
+
     public Integer getAnswerCount() {
         return answerCount;
     }

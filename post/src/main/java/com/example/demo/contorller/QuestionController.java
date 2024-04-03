@@ -10,32 +10,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {
+
     @Autowired
     private QuestionMapper questionMapper;
 
     @GetMapping
-    public List<Question> getAllQuestions() {
-        return questionMapper.findAll();
+    public List<Question> getAllQuestionsWithUserNickname() {
+        return questionMapper.findAllWithUserNicknameAndAnswerCount();
     }
 
-    @GetMapping("/{questionId}")
-    public Question getQuestionById(@PathVariable Integer questionId) {
-        return questionMapper.findById(questionId);
-    }
 
-    @PostMapping
-    public void addQuestion(@RequestBody Question question) {
-        questionMapper.add(question);
-    }
 
-    @PutMapping("/{questionId}")
-    public void updateQuestion(@PathVariable Integer questionId, @RequestBody Question question) {
-        question.setQuestionId(questionId);
-        questionMapper.update(question);
-    }
-
-    @DeleteMapping("/{questionId}")
-    public void deleteQuestion(@PathVariable Integer questionId) {
-        questionMapper.delete(questionId);
-    }
+    // 其他请求方法...
 }
