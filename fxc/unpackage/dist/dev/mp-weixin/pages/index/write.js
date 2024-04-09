@@ -102,15 +102,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.answers.length
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        g0: g0,
-      },
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -144,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -165,22 +156,67 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      question: "有多少种方式可以在Python中创建一个字典？",
-      answers: [{
-        user: "小明",
-        content: "在Python中，可以使用字面量语法、dict() 构造函数、或者推导式等多种方式来创建字典。"
-      }, {
-        user: "张三",
-        content: "Python中创建字典有多种方式，如字面量、dict()构造函数等，选择适合场景的方式即可。"
-      }],
-      date: "2023年5月2日"
+      userId: 1,
+      // 默认用户ID为1
+      showDialog: false,
+      newQuestionContent: '',
+      currentDate: '' // 存储当前日期
     };
+  },
+  mounted: function mounted() {
+    // 获取并格式化当前日期
+    var currentDate = new Date().toISOString().slice(0, 10);
+    this.currentDate = currentDate;
+  },
+  methods: {
+    // 弹出发布问题的对话框
+    showPublishDialog: function showPublishDialog() {
+      this.showDialog = true;
+    },
+    // 隐藏发布问题的对话框
+    hidePublishDialog: function hidePublishDialog() {
+      this.showDialog = false;
+      this.newQuestionContent = ''; // 隐藏对话框时清空输入内容
+    },
+    // 发布新问题
+    publishNewQuestion: function publishNewQuestion() {
+      var _this = this;
+      // 构建问题对象
+      var questionData = {
+        userId: this.userId,
+        questionContent: this.newQuestionContent,
+        questionDate: this.currentDate // 使用当前日期
+      };
+
+      // 发送问题数据到后端
+      uni.request({
+        url: 'http://localhost:8084/questions',
+        // 修改为后端接收问题数据的URL
+        method: 'POST',
+        data: questionData,
+        success: function success(res) {
+          console.log('Question published successfully:', res);
+          // 发布成功后关闭对话框
+          _this.hidePublishDialog();
+          // 可以根据后端返回的结果进行相应处理
+        },
+
+        fail: function fail(err) {
+          console.error('Error publishing question:', err);
+        }
+      });
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

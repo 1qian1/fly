@@ -17,6 +17,16 @@
                  LEFT JOIN Questions q ON a.question_id = q.question_id
         WHERE a.question_id = #{questionId}
     </select>
+    <!-- 添加新增回答的方法 -->
+    <insert id="addAnswer" parameterType="com.example.demo.entity.Answer" useGeneratedKeys="true" keyProperty="answerId">
+        <!-- 使用useGeneratedKeys属性指定自动生成主键 -->
+        <selectKey keyProperty="answerId" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO Answers (question_id, user_id, answer_content, answer_date)
+        VALUES (#{questionId}, #{userId}, #{answerContent}, #{answerDate})
+    </insert>
+
 
     <resultMap id="answerWithUserResultMap" type="com.example.demo.entity.Answer">
         <id column="answer_id" property="answerId"/>

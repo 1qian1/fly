@@ -23,4 +23,10 @@ public class AnswerService {
     public List<Answer>  getAnswerByqId(Integer questionId) {
         return answerMapper.findByqId(questionId);
     }
+    // 添加新增回答的方法
+    public void addAnswer(Answer answer) {
+        answerMapper.addAnswer(answer);
+
+    }
+
 }

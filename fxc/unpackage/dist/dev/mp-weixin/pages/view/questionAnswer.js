@@ -102,7 +102,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.questions.length
+  var g0 = _vm.filteredQuestions.length
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -165,23 +165,82 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      questions: []
+      questions: [],
+      userId: 1,
+      // 默认用户ID为1
+      showDialog: false,
+      newQuestionContent: '',
+      currentDate: '',
+      // 存储当前日期
+      showSuccessMessage: false,
+      // 控制发布成功提示的显示
+      searchText: '',
+      // 存储搜索文本
+      showNoResultMessage: false // 控制显示暂无匹配结果提示的显示
     };
+  },
+
+  computed: {
+    reversedQuestions: function reversedQuestions() {
+      // 反转问题数组
+      return this.questions.slice().reverse();
+    },
+    filteredQuestions: function filteredQuestions() {
+      var _this = this;
+      // 过滤问题数组，根据搜索文本进行模糊匹配
+      var filtered = this.reversedQuestions.filter(function (question) {
+        return question.questionContent.toLowerCase().includes(_this.searchText.toLowerCase());
+      });
+      // 如果模糊查询结果为空，则显示暂无匹配结果提示
+      this.showNoResultMessage = filtered.length === 0;
+      return filtered;
+    }
   },
   mounted: function mounted() {
     this.fetchQuestions();
+    // 获取并格式化当前日期
+    var currentDate = new Date().toISOString().slice(0, 10);
+    this.currentDate = currentDate;
   },
   methods: {
     fetchQuestions: function fetchQuestions() {
-      var _this = this;
+      var _this2 = this;
       uni.request({
         url: 'http://localhost:8084/questions',
         method: 'GET',
         success: function success(res) {
-          _this.questions = res.data;
+          _this2.questions = res.data;
           console.log(res);
         },
         fail: function fail(err) {
@@ -192,6 +251,49 @@ var _default = {
     goToQuestionDetail: function goToQuestionDetail(questionId) {
       uni.navigateTo({
         url: '/pages/view/prodetail?questionId=' + questionId
+      });
+    },
+    // 弹出发布问题的对话框
+    showPublishDialog: function showPublishDialog() {
+      this.showDialog = true;
+    },
+    // 隐藏发布问题的对话框
+    hidePublishDialog: function hidePublishDialog() {
+      this.showDialog = false;
+      this.newQuestionContent = ''; // 隐藏对话框时清空输入内容
+    },
+    // 发布新问题
+    publishNewQuestion: function publishNewQuestion() {
+      var _this3 = this;
+      // 构建问题对象
+      var questionData = {
+        userId: this.userId,
+        questionContent: this.newQuestionContent,
+        questionDate: this.currentDate // 使用当前日期
+      };
+
+      // 发送问题数据到后端
+      uni.request({
+        url: 'http://localhost:8084/questions',
+        // 修改为后端接收问题数据的URL
+        method: 'POST',
+        data: questionData,
+        success: function success(res) {
+          console.log('Question published successfully:', res);
+          // 发布成功后关闭对话框
+          _this3.hidePublishDialog();
+          // 显示发布成功消息
+          _this3.showSuccessMessage = true;
+          // 2秒后隐藏发布成功消息
+          setTimeout(function () {
+            _this3.showSuccessMessage = false;
+          }, 2000);
+          // 刷新问题数据
+          _this3.fetchQuestions();
+        },
+        fail: function fail(err) {
+          console.error('Error publishing question:', err);
+        }
       });
     }
   }

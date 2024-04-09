@@ -2,6 +2,62 @@
 .container {
   padding: 20rpx;
 }
+.publish-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 10%;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  line-height: 60px;
+  background-color: rgba(255, 255, 255, 0.7); /* 白色，透明度为 0.8 */
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 9999; /* 确保按钮在页面上其他元素之上 */
+}
+/* 弹出对话框样式 */
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.dialog-content {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+.dialog-content text,
+.dialog-content textarea {
+  margin-bottom: 10rpx;
+}
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.dialog-buttons .button {
+  width: 80rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background-color: #007AFF;
+  color: #fff;
+  border-radius: 5rpx;
+  margin-left: 10rpx;
+}
+.dialog-buttons .confirm {
+  background-color: #FF9500;
+}
 .question-item {
   margin-bottom: 20rpx;
   background-color: #f7f7f7;
@@ -21,5 +77,30 @@
 .info {
   display: flex;
   justify-content: space-between;
+}
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+}
+.search-input {
+  width: 100%;
+  padding: 10rpx;
+  margin-bottom: 10rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 5rpx;
+  position: -webkit-sticky;
+  position: sticky;
+  /* 使用 sticky 定位 */
+  top: 0;
+  /* 顶部定位 */
+  background-color:#f0f4e4;
 }
 

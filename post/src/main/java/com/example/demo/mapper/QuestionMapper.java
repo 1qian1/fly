@@ -1,10 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.entity.Question;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,7 +24,11 @@ public interface QuestionMapper {
     })
     List<Question> findAllWithUserNicknameAndAnswerCount();
 
-
-
+    @Insert("INSERT INTO questions (user_id, question_content, question_date) " +
+            "VALUES (#{userId}, #{questionContent}, #{questionDate})")
+    void insert(Question question);
+    // 根据问题ID查询问题内容
+    @Select("SELECT * FROM questions WHERE question_id = #{questionId}")
+    Question findById(Integer questionId);
     // 其他方法...
 }

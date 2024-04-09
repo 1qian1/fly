@@ -1,30 +1,72 @@
 <template>
   <view class="container">
-    <view class="question">
-      <text class="question-title">{{ question }}</text>
-      <text class="question-info">{{ answers.length }} 回答 | {{ date }}</text>
-    </view>
-    <view class="answer-list">
-      <view v-for="(answer, index) in answers" :key="index" class="answer-item">
-        <text class="answer-user">{{ answer.user }}:</text>
-        <text class="answer-content">{{ answer.content }}</text>
+    <button class="publish-button" @tap="showPublishDialog">发布问题</button>
+
+
+  <!-- 发布问题对话框 -->
+  <view v-show="showDialog" class="dialog-mask">
+    <view class="dialog-content">
+      <text>请输入您的问题：</text>
+      <textarea v-model="newQuestionContent" placeholder="在这里输入您的问题"></textarea>
+      <view class="dialog-buttons">
+        <view class="button" @tap="hidePublishDialog">取消</view>
+        <view class="button confirm" @tap="publishNewQuestion">确认发布</view>
       </view>
     </view>
   </view>
+    </view>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      question: "有多少种方式可以在Python中创建一个字典？",
-      answers: [
-        { user: "小明", content: "在Python中，可以使用字面量语法、dict() 构造函数、或者推导式等多种方式来创建字典。" },
-        { user: "张三", content: "Python中创建字典有多种方式，如字面量、dict()构造函数等，选择适合场景的方式即可。" }
-      ],
-      date: "2023年5月2日",
-    
+      userId: 1, // 默认用户ID为1
+      showDialog: false,
+      newQuestionContent: '',
+      currentDate: '' // 存储当前日期
     };
+  },
+  mounted() {
+    // 获取并格式化当前日期
+    const currentDate = new Date().toISOString().slice(0, 10);
+    this.currentDate = currentDate;
+  },
+  methods: {
+    // 弹出发布问题的对话框
+    showPublishDialog() {
+      this.showDialog = true;
+    },
+    // 隐藏发布问题的对话框
+    hidePublishDialog() {
+      this.showDialog = false;
+      this.newQuestionContent = ''; // 隐藏对话框时清空输入内容
+    },
+    // 发布新问题
+    publishNewQuestion() {
+      // 构建问题对象
+      const questionData = {
+        userId: this.userId,
+        questionContent: this.newQuestionContent,
+        questionDate: this.currentDate // 使用当前日期
+      };
+
+      // 发送问题数据到后端
+      uni.request({
+        url: 'http://localhost:8084/questions', // 修改为后端接收问题数据的URL
+        method: 'POST',
+        data: questionData,
+        success: (res) => {
+          console.log('Question published successfully:', res);
+          // 发布成功后关闭对话框
+          this.hidePublishDialog();
+          // 可以根据后端返回的结果进行相应处理
+        },
+        fail: (err) => {
+          console.error('Error publishing question:', err);
+        }
+      });
+    }
   }
 };
 </script>
@@ -34,38 +76,60 @@ export default {
   padding: 20rpx;
 }
 
-.question {
-  margin-bottom: 20rpx;
+.publish-button {
+  width: 100px;
+  height:40px;
+  line-height: 40rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #007AFF;
+  color: #fff;
+  border-radius: 5rpx;
 }
 
-.question-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+/* 弹出对话框样式 */
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-.question-info {
-  font-size: 14px;
-  color: #666;
-  margin-top: 10rpx;
+.dialog-content {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
 }
 
-.answer-list {
-  margin-top: 20rpx;
+.dialog-content text, .dialog-content textarea {
+  margin-bottom: 10rpx;
 }
 
-.answer-item {
-  margin-bottom: 20rpx;
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.answer-user {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
+.dialog-buttons .button {
+  width: 80rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background-color: #007AFF;
+  color: #fff;
+  border-radius: 5rpx;
+  margin-left: 10rpx;
 }
 
-.answer-content {
-  font-size: 16px;
-  color: #666;
+.dialog-buttons .confirm {
+  background-color: #FF9500;
 }
 </style>

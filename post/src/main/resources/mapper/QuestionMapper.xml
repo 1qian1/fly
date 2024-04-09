@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.QuestionMapper">
+
+    <!-- 查询所有问题及用户昵称和回答计数 -->
     <select id="findAllWithUserNicknameAndAnswerCount" resultMap="questionResultMap">
         SELECT q.question_id, q.user_id, q.question_content, q.question_date, u.nickname AS userNickname,
                COUNT(a.answer_id) AS answerCount
@@ -10,6 +12,20 @@
         GROUP BY q.question_id
     </select>
 
+    <!-- 插入新问题 -->
+    <insert id="insert" parameterType="com.example.demo.entity.Question">
+        <!-- 使用AUTO_INCREMENT属性指定问题ID自动生成 -->
+        <selectKey keyProperty="questionId" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO questions (user_id, question_content, question_date)
+        VALUES (#{userId}, #{questionContent}, #{questionDate})
+    </insert>
+    <!-- 在对应的 XML 文件中编写 SQL 查询语句 -->
+    <select id="findById" parameterType="Integer" resultType="com.example.demo.entity.Question">
+        SELECT * FROM questions WHERE question_id = #{questionId}
+    </select>
+    <!-- 结果映射 -->
     <resultMap id="questionResultMap" type="com.example.demo.entity.Question">
         <id property="questionId" column="question_id"/>
         <result property="userId" column="user_id"/>

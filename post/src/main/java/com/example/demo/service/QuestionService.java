@@ -17,5 +17,13 @@ public class QuestionService {
         return questionMapper.findAllWithUserNicknameAndAnswerCount();
     }
 
+    public void addQuestion(Question question) {
+        questionMapper.insert(question);
+    }
+
+    // 根据问题ID查询问题内容
+    public Question findById(Integer questionId) {
+        return questionMapper.findById(questionId);
+    }
     // 其他方法...
 }

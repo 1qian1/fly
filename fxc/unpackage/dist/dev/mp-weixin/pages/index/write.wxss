@@ -2,32 +2,55 @@
 .container {
   padding: 20rpx;
 }
-.question {
-  margin-bottom: 20rpx;
+.publish-button {
+  width: 100px;
+  height:40px;
+  line-height: 40rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #007AFF;
+  color: #fff;
+  border-radius: 5rpx;
 }
-.question-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+
+/* 弹出对话框样式 */
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
-.question-info {
-  font-size: 14px;
-  color: #666;
-  margin-top: 10rpx;
+.dialog-content {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
 }
-.answer-list {
-  margin-top: 20rpx;
+.dialog-content text, .dialog-content textarea {
+  margin-bottom: 10rpx;
 }
-.answer-item {
-  margin-bottom: 20rpx;
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
-.answer-user {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
+.dialog-buttons .button {
+  width: 80rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background-color: #007AFF;
+  color: #fff;
+  border-radius: 5rpx;
+  margin-left: 10rpx;
 }
-.answer-content {
-  font-size: 16px;
-  color: #666;
+.dialog-buttons .confirm {
+  background-color: #FF9500;
 }
 

@@ -157,12 +157,19 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       question: '',
       answers: [],
-      questionId: '' // 初始化 questionId,
+      questionId: '',
+      // 初始化 questionId,
+      newAnswerContent: '' // 存储新回答的内容
     };
   },
   onLoad: function onLoad(query) {
@@ -170,24 +177,62 @@ var _default = {
     this.questionId = query.questionId;
     console.log('Received questionId:', this.questionId);
     // 在这里调用相应的接口，使用 this.questionId 做为参数来获取数据
-  },
-  mounted: function mounted() {
     this.fetchQuestions();
+    this.fetchQuestionContent();
   },
   methods: {
-    fetchQuestions: function fetchQuestions() {
+    fetchQuestionContent: function fetchQuestionContent() {
       var _this = this;
       uni.request({
+        url: 'http://localhost:8084/questions/' + this.questionId,
+        // 在 URL 中添加问题ID作为参数
+        method: 'POST',
+        success: function success(res) {
+          _this.question = res.data.questionContent;
+          console.log('Question content:', _this.question);
+        },
+        fail: function fail(err) {
+          console.error('Error fetching question content:', err);
+        }
+      });
+    },
+    fetchQuestions: function fetchQuestions() {
+      var _this2 = this;
+      uni.request({
         url: 'http://localhost:8084/answers/qq/' + this.questionId,
-        // 在 URL 中添加问题ID作为参数,
         method: 'GET',
         success: function success(res) {
-          _this.answers = res.data;
-          _this.question = res.data[0].questionContent;
+          _this2.answers = res.data.reverse(); // 将回答列表逆序排列
           console.log(res);
         },
         fail: function fail(err) {
           console.error('Error fetching answers:', err);
+        }
+      });
+    },
+    postAnswer: function postAnswer() {
+      var _this3 = this;
+      var newAnswer = {
+        questionId: this.questionId,
+        userId: 2,
+        // 设置用户ID为2
+        answerContent: this.newAnswerContent,
+        answerDate: new Date().toISOString().slice(0, 10) // 获取当前日期并格式化为YYYY-MM-DD
+      };
+
+      uni.request({
+        url: 'http://localhost:8084/answers',
+        method: 'POST',
+        data: newAnswer,
+        success: function success(res) {
+          console.log('Answer posted successfully:', res);
+          // 发布成功后刷新回答列表
+          _this3.fetchQuestions();
+          // 清空文本框内容
+          _this3.newAnswerContent = '';
+        },
+        fail: function fail(err) {
+          console.error('Error posting answer:', err);
         }
       });
     }
