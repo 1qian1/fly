@@ -135,29 +135,76 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var lunbo = function lunbo() {
-  __webpack_require__.e(/*! require.ensure | pages/component/lunbo */ "pages/component/lunbo").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/component/lunbo.vue */ 121));
-  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-};
-var cardlist = function cardlist() {
-  __webpack_require__.e(/*! require.ensure | pages/component/cardlist */ "pages/component/cardlist").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/component/cardlist.vue */ 128));
-  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-};
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
-  components: {
-    lunbo: lunbo,
-    cardlist: cardlist
+  data: function data() {
+    return {
+      // 模拟轮播图数据
+      swiperItems: [{
+        image: '/static/img/th.jpg'
+      }, {
+        image: '/static/img/th2.jpg'
+      }, {
+        image: '/static/img/th3.jpg'
+      }],
+      articles: [{
+        id: 1,
+        title: '如何提高英语口语？',
+        cover: '/static/img/b1.jpg',
+        summary: '提高英语口语的方法有很多，本文将分享一些有效的技巧和建议。'
+      }, {
+        id: 2,
+        title: '英语听力训练的重要性',
+        cover: '/static/img/b2.jpg',
+        summary: '英语听力是学习英语的重要组成部分，如何进行有效的听力训练？'
+      }, {
+        id: 3,
+        title: '阅读英文文章的技巧',
+        cover: '/static/img/b3.jpg',
+        summary: '阅读英文文章是提高英语水平的有效方法，本文将介绍一些阅读技巧。'
+      }]
+    };
+  },
+  methods: {
+    // 进入文章浏览界面
+    goToArticle: function goToArticle(article) {
+      uni.navigateTo({
+        url: '/pages/view/article?id=' + article.id
+      });
+    } // 生成随机颜色
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

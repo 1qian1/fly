@@ -1,56 +1,14 @@
 
-.container {
-  padding: 20rpx;
+.container.data-v-9e8a410e {
+  padding: 20px;
 }
-.publish-button {
-  width: 100px;
-  height:40px;
-  line-height: 40rpx;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  background-color: #007AFF;
-  color: #fff;
-  border-radius: 5rpx;
-}
-
-/* 弹出对话框样式 */
-.dialog-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
+.editor.data-v-9e8a410e {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+  height: 300px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
-.dialog-content {
-  background-color: #fff;
-  padding: 20rpx;
-  border-radius: 10rpx;
-}
-.dialog-content text, .dialog-content textarea {
-  margin-bottom: 10rpx;
-}
-.dialog-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-.dialog-buttons .button {
-  width: 80rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  text-align: center;
-  background-color: #007AFF;
-  color: #fff;
-  border-radius: 5rpx;
-  margin-left: 10rpx;
-}
-.dialog-buttons .confirm {
-  background-color: #FF9500;
+button.data-v-9e8a410e {
+  margin-top: 10px;
 }
 

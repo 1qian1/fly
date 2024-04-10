@@ -19,6 +19,15 @@ CREATE TABLE Questions (
     question_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     question_content TEXT,
-    question_date DATE,
+    question_date DATETIME,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+CREATE TABLE Messages (
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    message_content TEXT,
+    messageDate DATETIME,
+    FOREIGN KEY (userId) REFERENCES Users(user_id)
+);
+
+

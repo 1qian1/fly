@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/component/laba":1,"pages/component/cardlist":1,"pages/component/lunbo":1,"node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons":1};
+/******/ 		var cssChunks = {"pages/component/laba":1,"node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/component/laba":"pages/component/laba","pages/component/cardlist":"pages/component/cardlist","pages/component/lunbo":"pages/component/lunbo","node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons":"node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/component/laba":"pages/component/laba","node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons":"node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -73,7 +73,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -111,75 +111,81 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      messages: [{
-        content: "而在这里，你会看到一个不同的我，一个在生活中发现美，感受痛苦，洞察人性的我。",
-        date: "24年3月31日",
-        source: "雨爱"
-      }, {
-        content: "当第一颗卫星飞向大气层外，我们便以为自己终有一日会征服宇宙。",
-        date: "24年3月31日",
-        source: "雨爱"
-      }, {
-        content: "世事无常，生命是短暂的，我们都活在生死边缘，哪怕只有一天，一刹那，我们都想要活下去。",
-        date: "23年7月5日",
-        source: "铃芽户缔"
-      }, {
-        content: "有的时候，这个世界看上去是灰色的。不像梦里，那么五彩斑斓。可是就算是这样，也一定有一些光亮在等着你，哪怕只是些很小的瞬间，也值得你努力活下去。",
-        date: "23年3月26日",
-        source: "深海"
-      }, {
-        content: "世界上最无耻最阴险、最歹毒的赞美，就是用穷人的艰辛和苦难，当做励志故事愚弄底层人。",
-        date: "22年7月30日",
-        source: "王朔"
-      }, {
-        content: "井底之蛙，不知大海之宽广，却知晓天空之蓝。",
-        date: "20年12月19日",
-        source: "知晓天空之蓝的人啊"
-      }, {
-        content: "没有任何一个成功不冒风险，直面风险，豁出去干。成功往往不是规划出来的，危机是你想不到的机会。",
-        date: "20年8月12日",
-        source: "雷军"
-      }],
+      userId: 1,
+      messages: [],
       showDialog: false,
-      newMessage: ""
+      newMessage: "",
+      currentDate: '' // 存储当前日期
     };
   },
+  mounted: function mounted() {
+    this.fetchMessages();
+    var currentDate = new Date();
+    this.currentDate = currentDate;
+  },
   methods: {
+    //获取留言
+    fetchMessages: function fetchMessages() {
+      var _this = this;
+      uni.request({
+        url: 'http://localhost:8084/messages',
+        method: 'GET',
+        success: function success(res) {
+          // 将后端返回的留言数据保存到 messages 数组中
+          _this.messages = res.data.map(function (message) {
+            var messageDate = new Date(message.messageDate);
+            var year = messageDate.getFullYear().toString().slice(-2);
+            var month = (messageDate.getMonth() + 1).toString().padStart(2, '0');
+            var day = messageDate.getDate().toString().padStart(2, '0');
+            message.messageDate = "".concat(year, " \u5E74 ").concat(month, " \u6708 ").concat(day, " \u65E5");
+            return message;
+          });
+        },
+        fail: function fail(err) {
+          console.error('Error fetching messages:', err);
+        }
+      });
+    },
     // 点击悬浮按钮显示输入框
     showInputDialog: function showInputDialog() {
       this.showDialog = true;
     },
     // 点击确认发布按钮
     publishMessage: function publishMessage() {
-      if (this.newMessage.trim() !== "") {
-        var currentDate = this.getCurrentDate();
-        var newMessage = {
-          content: this.newMessage,
-          date: currentDate,
-          source: "用户"
-        };
-        // 将新留言添加到留言列表的顶部
-        this.messages.unshift(newMessage);
-        this.newMessage = ""; // 清空输入框
-      }
+      var _this2 = this;
+      // 构建问题对象
+      var messageData = {
+        userId: this.userId,
+        messageContent: this.newMessage,
+        messageDate: this.currentDate // 使用当前日期
+      };
 
+      // 发送留言数据到后端
+      uni.request({
+        url: 'http://localhost:8084/messages',
+        // 修改为后端接收问题数据的URL
+        method: 'POST',
+        data: messageData,
+        success: function success(res) {
+          console.log('Message published successfully:', res);
+          // 刷新问题数据
+          _this2.fetchMessages();
+        },
+        fail: function fail(err) {
+          console.error('Error publishing message:', err);
+        }
+      });
+      this.newMessage = ""; // 清空输入框
       this.showDialog = false; // 关闭输入框
     },
     // 点击取消按钮
     cancelMessage: function cancelMessage() {
       this.showDialog = false; // 关闭输入框
-    },
-    // 获取当前日期
-    getCurrentDate: function getCurrentDate() {
-      var currentDate = new Date();
-      var year = currentDate.getFullYear();
-      var month = currentDate.getMonth() + 1;
-      var day = currentDate.getDate();
-      return "".concat(year, "\u5E74").concat(month, "\u6708").concat(day, "\u65E5");
     }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

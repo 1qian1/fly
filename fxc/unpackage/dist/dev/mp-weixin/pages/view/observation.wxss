@@ -2,4 +2,45 @@
 .container.data-v-0c48eb3b {
   padding: 20rpx;
 }
+.swiper.data-v-0c48eb3b {
+  height: 300rpx;
+	 width:100%;
+  margin-bottom: 20rpx;
+}
+.swiper-image.data-v-0c48eb3b {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+.card-list.data-v-0c48eb3b {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card.data-v-0c48eb3b {
+  width: 48%;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+	 border: 1rpx solid #ddd; /* 添加边框 */
+	 box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+.card-cover.data-v-0c48eb3b {
+  width: 100%;
+  height: 200rpx;
+  object-fit: cover;
+  margin-bottom: 10rpx;
+}
+.card-content.data-v-0c48eb3b {
+  padding:0 20rpx;
+}
+.card-title.data-v-0c48eb3b {
+  font-size: 18rpx;
+  font-weight: bold;
+}
+.card-summary.data-v-0c48eb3b {
+  font-size: 14rpx;
+  color: #666666;
+  margin: 0;
+}
 

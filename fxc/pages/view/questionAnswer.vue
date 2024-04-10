@@ -73,23 +73,36 @@ export default {
   mounted() {
   this.fetchQuestions();
       // 获取并格式化当前日期
-      const currentDate = new Date().toISOString().slice(0, 10);
+      const currentDate = new Date();
       this.currentDate = currentDate;
     },
   methods: {
-    fetchQuestions() {
-      uni.request({
-        url: 'http://localhost:8084/questions',
-        method: 'GET',
-        success: (res) => {
-          this.questions = res.data;
-          console.log(res);
-        },
-        fail: (err) => {
-          console.error('Error fetching questions:', err);
-        }
+fetchQuestions() {
+  uni.request({
+    url: 'http://localhost:8084/questions',
+    method: 'GET',
+    success: (res) => {
+      // 对获取的数据进行处理
+      this.questions = res.data.map(question => {
+        // 将后端传来的日期字符串转换为 JavaScript Date 对象
+        const questionDate = new Date(question.questionDate);
+        // 获取年月日
+        const year = questionDate.getFullYear().toString().slice(-2);
+        const month = (questionDate.getMonth() + 1).toString().padStart(2, '0'); // 补零
+        const day = questionDate.getDate().toString().padStart(2, '0'); // 补零  
+        // 格式化为年月日的形式
+        const formattedDate = `${year} 年 ${month} 月 ${day} 日`;
+        // 将格式化后的日期更新到 question 对象中
+        question.questionDate = formattedDate;
+        return question;
       });
     },
+    fail: (err) => {
+      console.error('Error fetching questions:', err);
+    }
+  });
+},
+
     goToQuestionDetail(questionId) {
       uni.navigateTo({
         url: '/pages/view/prodetail?questionId=' + questionId

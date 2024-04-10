@@ -230,7 +230,7 @@ var _default = {
   mounted: function mounted() {
     this.fetchQuestions();
     // 获取并格式化当前日期
-    var currentDate = new Date().toISOString().slice(0, 10);
+    var currentDate = new Date();
     this.currentDate = currentDate;
   },
   methods: {
@@ -240,8 +240,20 @@ var _default = {
         url: 'http://localhost:8084/questions',
         method: 'GET',
         success: function success(res) {
-          _this2.questions = res.data;
-          console.log(res);
+          // 对获取的数据进行处理
+          _this2.questions = res.data.map(function (question) {
+            // 将后端传来的日期字符串转换为 JavaScript Date 对象
+            var questionDate = new Date(question.questionDate);
+            // 获取年月日
+            var year = questionDate.getFullYear().toString().slice(-2);
+            var month = (questionDate.getMonth() + 1).toString().padStart(2, '0'); // 补零
+            var day = questionDate.getDate().toString().padStart(2, '0'); // 补零  
+            // 格式化为年月日的形式
+            var formattedDate = "".concat(year, " \u5E74 ").concat(month, " \u6708 ").concat(day, " \u65E5");
+            // 将格式化后的日期更新到 question 对象中
+            question.questionDate = formattedDate;
+            return question;
+          });
         },
         fail: function fail(err) {
           console.error('Error fetching questions:', err);
