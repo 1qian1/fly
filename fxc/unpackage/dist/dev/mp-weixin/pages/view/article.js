@@ -102,6 +102,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.formatContent(_vm.article.content)
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        m0: m0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -141,6 +150,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -177,18 +196,59 @@ var _default = {
         id: 1,
         title: '如何提高英语口语？',
         cover: '/static/img/b1.jpg',
-        content: '提高英语口语的方法有很多，比如多说、多听、多模仿。...'
+        author: '小明',
+        publishTime: '2024-04-15',
+        content: '提高英语口语的方法有很多，比如多说、多听、多模仿。多看英文资料，多和外国人交流，多练习口语表达。以下是一些提高英语口语的技巧和方法：<br><img src="/static/img/b1.jpg"><br>多参加英语角和英语学习小组，进行英语口语练习。<br><img src="/static/img/b1.jpg"><br>利用网络资源，如英语学习网站、英语社交平台等，进行英语口语交流和学习。<br><img src="/static/img/b1.jpg"><br>定期参加英语口语考试，检验自己的口语水平，并及时调整学习方法和策略。'
       }, {
         id: 2,
         title: '英语听力训练的重要性',
         cover: '/static/img/b2.jpg',
+        author: '小红',
+        publishTime: '2024-04-14',
         content: '英语听力是学习英语的重要组成部分，如何进行有效的听力训练？...'
       }, {
         id: 3,
         title: '阅读英文文章的技巧',
         cover: '/static/img/b3.jpg',
+        author: '小李',
+        publishTime: '2024-04-13',
         content: '阅读英文文章是提高英语水平的有效方法，本文将介绍一些阅读技巧。...'
       }];
+    }
+  },
+  methods: {
+    // 格式化文章内容，插入图片并首行缩进两字符
+    formatContent: function formatContent(content) {
+      // 如果内容不存在或者不是字符串类型，则返回空字符串
+      if (!content || typeof content !== 'string') {
+        return '';
+      }
+
+      // 将文章内容按照换行符拆分成数组
+      var paragraphs = content.split('<br>');
+      // 新建一个数组用于存储格式化后的段落
+      var formattedParagraphs = [];
+      // 对每个段落进行处理
+      var _iterator = _createForOfIteratorHelper(paragraphs),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var paragraph = _step.value;
+          // 如果段落包含图片标签
+          if (paragraph.includes('<img src=')) {
+            // 将图片标签插入段落中
+            paragraph = paragraph.replace('<img src=', '<br><img src=');
+          }
+          // 首行缩进两字符，拼接到格式化后的段落数组中
+          formattedParagraphs.push('<div style="text-indent: 2em; word-wrap: break-word;">' + paragraph + '</div>');
+        }
+        // 使用 rich-text 渲染富文本内容
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      return formattedParagraphs.join('');
     }
   }
 };

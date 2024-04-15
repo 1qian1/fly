@@ -1,1 +1,0 @@
-<swiper class="swiper data-v-9022c7d2" autoplay="{{true}}" interval="3000" circular="{{true}}"><block wx:for="{{swiperItems}}" wx:for-item="item" wx:for-index="index" wx:key="index"><swiper-item class="data-v-9022c7d2"><image class="swiper-image data-v-9022c7d2" src="{{item.image}}"></image></swiper-item></block></swiper>

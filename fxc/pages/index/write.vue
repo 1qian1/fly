@@ -1,14 +1,7 @@
 <template>
   <view class="container">
-    <editor
-      ref="editor"
-      class="editor"
-      :placeholder="placeholder"
-      @ready="onEditorReady"
-      @statuschange="onEditorStatusChange"
-    ></editor>
-    <button @click="uploadImage">上传图片</button>
-    <button @click="publish">发布</button>
+    <button @tap="chooseImage">选择图片</button>
+    <image v-if="imageUrl" :src="imageUrl" mode="aspectFit" style="width: 300px; height: 300px;" @tap="previewImage"></image>
   </view>
 </template>
 
@@ -16,58 +9,73 @@
 export default {
   data() {
     return {
-      placeholder: "请输入见闻内容",
-      editorContent: "",
-      editor: null
-    };
+      imageUrl: '' // 存储图片路径
+    }
   },
   methods: {
-    onEditorReady() {
-      // 编辑器准备就绪
-      this.editor = this.$refs.editor;
-    },
-    onEditorStatusChange(e) {
-      // 编辑器内容变化时的处理
-      this.editorContent = e.detail.html;
-    },
-    uploadImage() {
-      // 上传图片
+    // 选择图片
+    chooseImage() {
       uni.chooseImage({
-        count: 1,
+        count: 10, // 一次只能选择一张图片
         success: (res) => {
-          const tempFilePath = res.tempFilePaths[0];
-          uni.uploadFile({
-            url: 'YOUR_UPLOAD_URL',
-            filePath: tempFilePath,
-            name: 'image',
-            success: (uploadRes) => {
-              const imageUrl = uploadRes.data;
-              this.editor.insertImage({ src: imageUrl });
-            }
-          });
+          let filePath = res.tempFilePaths[0];
+          this.uploadImage(filePath);
+        },
+        fail: (err) => {
+          console.error('Image selection failed:', err);
         }
       });
     },
-    publish() {
-      // 发布见闻
-      // 将 this.editorContent 提交到后端保存
-      console.log("发布见闻：", this.editorContent);
+    // 上传图片
+    uploadImage(filePath) {
+      // 将图片保存到 /static/jw 目录下
+      let savePath = '/static/jw/' + this.getFileName(filePath); // 构建保存路径
+      console.log('Saving image to path:', savePath);
+
+ // 保存图片到本地
+  uni.saveFile({
+    tempFilePath: filePath,
+    filePath: savePath,
+    success(res) {
+      // 保存成功后将图片路径保存到data中
+      that.imageUrl = savePath;
+      console.log('Image URL:', that.imageUrl);
+    },
+    fail(err) {
+      console.error('Image save failed:', err);
+    }
+  });
+      // 模拟保存操作，实际应替换为真实保存逻辑
+      // 延迟1秒钟模拟保存过程
+      setTimeout(() => {
+        // 保存成功后将图片路径保存到data中
+        this.imageUrl = savePath;
+        console.log('Image URL:', this.imageUrl);
+      }, 1000);
+    },
+    // 预览图片
+    previewImage() {
+      if (this.imageUrl) {
+        uni.previewImage({
+          urls: [this.imageUrl]
+        });
+      }
+    },
+    // 获取文件名
+    getFileName(filePath) {
+      let index = filePath.lastIndexOf('/');
+      return filePath.substring(index + 1);
     }
   }
-};
+}
 </script>
 
-<style scoped>
+<style>
 .container {
-  padding: 20px;
-}
-.editor {
-  width: 100%;
-  height: 300px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-button {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 </style>

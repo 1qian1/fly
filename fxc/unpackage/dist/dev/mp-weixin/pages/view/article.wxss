@@ -13,7 +13,17 @@
   justify-content: center; 
   font-size: 24rpx;
   font-weight: bold;
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
+}
+.meta.data-v-db0182f6 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.author.data-v-db0182f6,
+.publish-time.data-v-db0182f6 {
+  font-size: 14rpx;
+  color: #666;
 }
 .content.data-v-db0182f6 {
   line-height: 1.5;
