@@ -6,6 +6,7 @@
     "pages/index/write",
     "pages/view/article",
     "pages/view/observation",
+    "pages/view/jw",
     "pages/view/questionAnswer",
     "pages/view/prodetail",
     "pages/view/oneWord",

@@ -52,6 +52,14 @@
 
 		},
 		{
+			"path": "pages/view/jw",
+			"style": {
+				"navigationBarTitleText": "见闻发布"
+			}
+		
+		
+		},
+		{
 			"path": "pages/view/questionAnswer",
 			"style": {
 				"navigationBarTitleText": "问答"

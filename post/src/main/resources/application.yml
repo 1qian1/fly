@@ -13,6 +13,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  web:
+    resources:
+      static-locations: file:///C:/Users/29276/Desktop/img/
 
 mybatis:
   # mapper????

@@ -36,7 +36,8 @@
 		data() {
 			return {
 				editorCtx: null,
-				title: '' // 添加 title 属性来保存文章标题
+				title: '', // 添加 title 属性来保存文章标题
+				imageFiles: [] // 用于存储选择的图片文件
 			}
 		},
 		created() {
@@ -77,6 +78,9 @@
 					sourceType: ['album'], //从相册选择
 					success: function(res) {
 						console.log("图片地址", res);
+						// 将选择的图片文件存储起来
+						that.imageFiles.push(res.tempFilePaths[0]);
+						// 在编辑器中插入图片
 						that.editorCtx.insertImage({
 							src: res.tempFilePaths[0],
 							alt: "图片失效",
@@ -91,21 +95,62 @@
 
 					}
 				});
-
-
 			},
 			// 获取编辑器内容
 			getContents() {
 				console.log("标题:", this.title); // 打印标题
-				console.log("保存", this.editorCtx);
-				this.editorCtx.getContents({
-					success: (res) => {
-						console.log("成功", res);
-					},
-					fail: (res) => {
-						console.log("失败", res);
-					}
-				})
+				// 上传临时图片链接并替换为真实链接
+				this.uploadImagesAndReplace();
+			},
+			// 上传临时图片链接并替换为真实链接
+			uploadImagesAndReplace() {
+				let that = this;
+				// 遍历已选择的图片文件，逐个上传到后端
+				this.imageFiles.forEach((filePath, index) => {
+					// 上传图片逻辑，这部分代码需要根据你的后端接口来实现
+					uni.uploadFile({
+						url: 'http://localhost:8084/upload', // 后端接口地址
+						filePath: filePath,
+						name: 'file',
+						success: function(res) {
+							console.log('上传成功！', res.data);
+							// 将返回的真实图片URL替换编辑器中对应的临时链接
+							that.editorCtx.getContents({
+								success: (editorContent) => {
+									let content = editorContent.html;
+									// 使用正则表达式替换临时链接为真实链接
+									content = content.replace(new RegExp(that.imageFiles[
+										index], 'g'), res.data);
+									// 更新编辑器内容
+									that.editorCtx.setContents({
+										html: content,
+										success: function(res) {
+											console.log('图片链接替换成功！');
+											// 如果所有图片链接都替换完成，则打印编辑器内容
+											if (index === that.imageFiles
+												.length - 1) {
+												that.printEditorContent();
+											}
+										},
+										fail: function(err) {
+											console.error('设置编辑器内容失败！', err);
+										}
+									});
+								},
+								fail: function(err) {
+									console.error('获取编辑器内容失败！', err);
+								}
+							});
+						},
+						fail: function(err) {
+							console.error('上传失败！', err);
+						}
+					});
+				});
+			},
+			// 打印编辑器内容
+			printEditorContent() {
+				console.log("编辑器内容:", this.editorCtx.action.args.html); // 打印编辑器内容
 			}
 
 		}

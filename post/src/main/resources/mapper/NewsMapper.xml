@@ -15,8 +15,8 @@
         <selectKey keyProperty="newsId" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO News (title, content, news_date, user_id)
-        VALUES (#{title}, #{content}, #{newsDate}, #{userId})
+        INSERT INTO News (user_id, news_title, news_content, publish_time)
+        VALUES (#{userId}, #{newsTitle}, #{newsContent}, #{publishTime})
     </insert>
 
 </mapper>

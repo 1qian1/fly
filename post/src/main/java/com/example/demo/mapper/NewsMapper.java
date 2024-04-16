@@ -16,7 +16,7 @@ public interface NewsMapper {
     @Select("SELECT * FROM News WHERE news_id = #{newsId}")
     News findById(Integer newsId);
 
-    @Insert("INSERT INTO News (user_id, news_title, news_content, publish_date) " +
-            "VALUES (#{userId}, #{newsTitle}, #{newsContent}, #{publishDate})")
+    @Insert("INSERT INTO News (user_id, news_title, news_content, publish_time) " +
+            "VALUES (#{userId}, #{newsTitle}, #{newsContent}, #{publishTime})")
     void insert(News news);
 }
