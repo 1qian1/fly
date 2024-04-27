@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -143,7 +143,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var laba = function laba() {
   __webpack_require__.e(/*! require.ensure | pages/component/laba */ "pages/component/laba").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/component/laba.vue */ 129));
+    return resolve(__webpack_require__(/*! @/pages/component/laba.vue */ 149));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -152,51 +152,48 @@ var _default = {
   },
   data: function data() {
     return {
-      words: [{
-        cp: 10,
-        name: 'example',
-        spelling: '[ɪɡˈzɑːmpl]',
-        cx: 'n.',
-        m: "例子；实例；范例；典型；榜样；样品；例证；样板；模范；楷模",
-        en: "Can you give me an example of what you mean ? ",
-        ch: "你能给我举个实例来解释你的意思吗？",
-        class: ['cet6', 'cet4', '高考'],
-        soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=example'
-      }, {
-        cp: 6,
-        name: 'apple',
-        spelling: '[ˈæpl]',
-        cx: 'n.',
-        m: "苹果",
-        en: "Have an apple to keep you going till dinner time ",
-        ch: "吃个苹果就能挨到吃晚饭了。",
-        class: ['cet6', 'cet4', '高考'],
-        soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=apple'
-      }, {
-        cp: 15,
-        name: 'miss',
-        spelling: '[mɪs]',
-        cx: 'v.',
-        m: "错过；不在；思念；迟到；未达到；避开（不愉快的事）；不懂；未击中；不做；不理解；未得到；未觉察；未见到；未听到；发觉丢失",
-        en: "The company has missed its profit forecast again. ",
-        ch: "公司又未达到其利润预测。",
-        class: ['cet6', 'cet4', '高考', '小学'],
-        soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=miss'
-      }
-
-      // 可以继续添加更多的单词
-      ]
+      words: [],
+      tp: "cet4",
+      wordClassJSON: []
     };
   },
-
+  mounted: function mounted() {
+    this.fetchWords();
+  },
   methods: {
     handleWordChange: function handleWordChange(e) {
       console.log('当前单词索引:', e.detail.current);
       // 在这里可以根据索引来处理当前显示的单词
+    },
+    fetchWords: function fetchWords() {
+      var _this = this;
+      uni.request({
+        url: 'http://localhost:8084/words/' + this.tp,
+        method: 'GET',
+        success: function success(res) {
+          if (Array.isArray(res.data)) {
+            res.data.forEach(function (item) {
+              if (item.wordClass) {
+                item.wordClassArray = item.wordClass.split(',');
+              } else {
+                console.error("wordClass 字段不存在或为空。");
+              }
+            });
+            _this.words = res.data;
+          } else {
+            console.error("res.data 不是一个数组。");
+          }
+          console.log(res.data);
+        },
+        fail: function fail(err) {
+          console.error('Error fetching words:', err);
+        }
+      });
     }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

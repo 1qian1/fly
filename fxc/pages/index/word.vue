@@ -9,7 +9,7 @@
 						<view class="word-info" style=" display: flex;
   align-items: center; ">
 							<text class="word-spelling">{{ word.spelling }}</text>
-							<laba :soundSrc="word.soundSrc"></laba>
+							<laba :soundSrc="word.soundSource"></laba>
 						</view>
 
 					</view>
@@ -20,12 +20,12 @@
 						</view>
 						<view class="word-meaning">
 							<view style='display: flex;margin-bottom: 5px;'>{{ word.cx}}
-								<view style="margin-left:10px">{{word.m}}</view>
+								<view style="margin-left:10px">{{word.meaning}}</view>
 							</view>
-							<view style="margin-bottom: 5px;">{{ word.en }}</view>
-							<view style="font-size: 14px;color: #666;margin-bottom: 5px;">{{ word.ch }}</view>
+							<view style="margin-bottom: 5px;">{{ word.englishExample }}</view>
+							<view style="font-size: 14px;color: #666;margin-bottom: 5px;">{{ word.chineseExample }}</view>
 							<View style="display: flex; ">
-								<View v-for="(ct, index) in word.class" :key="index" class="card">{{ ct }}</View>
+								<View v-for="(ct, index) in word.wordClassArray" :key="index" class="card">{{ ct }}</View>
 							</View>
 						</view>
 					</view>
@@ -45,50 +45,46 @@
 		},
 		data() {
 			return {
-				words: [{
-						cp: 10,
-						name: 'example',
-						spelling: '[ɪɡˈzɑːmpl]',
-						cx: 'n.',
-						m: "例子；实例；范例；典型；榜样；样品；例证；样板；模范；楷模",
-						en: "Can you give me an example of what you mean ? ",
-						ch: "你能给我举个实例来解释你的意思吗？",
-						class: ['cet6', 'cet4', '高考'],
-						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=example',
-					},
-					{
-						cp: 6,
-						name: 'apple',
-						spelling: '[ˈæpl]',
-						cx: 'n.',
-						m: "苹果",
-						en: "Have an apple to keep you going till dinner time ",
-						ch: "吃个苹果就能挨到吃晚饭了。",
-						class: ['cet6', 'cet4', '高考'],
-						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=apple',
-					},
-					{
-						cp: 15,
-						name: 'miss',
-						spelling: '[mɪs]',
-						cx: 'v.',
-						m: "错过；不在；思念；迟到；未达到；避开（不愉快的事）；不懂；未击中；不做；不理解；未得到；未觉察；未见到；未听到；发觉丢失",
-						en: "The company has missed its profit forecast again. ",
-						ch: "公司又未达到其利润预测。",
-						class: ['cet6', 'cet4', '高考','小学'],
-						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=miss',
-					},
-
-
-					// 可以继续添加更多的单词
-				],
+				words:[],
+				tp:"cet4",
+				wordClassJSON:[], 
 			};
+		},
+		mounted(){
+			this.fetchWords();
 		},
 		methods: {
 			handleWordChange(e) {
 				console.log('当前单词索引:', e.detail.current);
 				// 在这里可以根据索引来处理当前显示的单词
-			}
+			},
+			fetchWords(){
+				uni.request({
+					url: 'http://localhost:8084/words/'+this.tp,
+					method: 'GET',
+					success: (res) => {
+					
+				if (Array.isArray(res.data)) {
+				    res.data.forEach(item => {
+				        if (item.wordClass) {
+				            item.wordClassArray = item.wordClass.split(',');
+				        } else {
+				            console.error("wordClass 字段不存在或为空。");
+				        }
+				    });
+				    this.words = res.data;
+				} else {
+				    console.error("res.data 不是一个数组。");
+				}
+
+
+					    console.log(res.data);
+					},
+					fail: (err) => {
+						console.error('Error fetching words:', err);
+					}
+				});
+			} 
 		}
 	};
 </script>
