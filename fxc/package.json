@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@dcloudio/uni-ui": "^1.5.3",
+    "image-tools": "^1.4.0",
     "uni-simple-router": "^2.0.8-beta.4"
   }
 }

@@ -4,7 +4,7 @@
 			<swiper-item v-for="(word, index) in words" :key="index">
 				<view class="word">
 					<view class="word-name-laba">
-						<text>{{ word.name }}</text>
+						<text style="font-weight: bold;">{{ word.name }}</text>
 
 						<view class="word-info" style=" display: flex;
   align-items: center; ">
@@ -15,14 +15,21 @@
 					</view>
 					<view class="word-info">
 						<view class="bc-container">
-						  <text >词频：</text>
-						  <view v-for="index in 25" :key="index" class="bc"></view>
+							<text>词频：</text>
+							<view v-for="index in word.cp" :key="index" class="bc"></view>
 						</view>
-						<text class="word-meaning">释义：{{ word.meaning }}</text>
-						<text class="word-type">词性：{{ word.partOfSpeech }}</text>
-						<text class="word-phrases">常见词组：{{ word.commonPhrases }}</text>
-						<text class="word-example">例句：{{ word.example }}</text>
+						<view class="word-meaning">
+							<view style='display: flex;margin-bottom: 5px;'>{{ word.cx}}
+								<view style="margin-left:10px">{{word.m}}</view>
+							</view>
+							<view style="margin-bottom: 5px;">{{ word.en }}</view>
+							<view style="font-size: 14px;color: #666;margin-bottom: 5px;">{{ word.ch }}</view>
+							<View style="display: flex; ">
+								<View v-for="(ct, index) in word.class" :key="index" class="card">{{ ct }}</View>
+							</View>
+						</view>
 					</view>
+
 				</view>
 			</swiper-item>
 		</swiper>
@@ -39,41 +46,40 @@
 		data() {
 			return {
 				words: [{
+						cp: 10,
 						name: 'example',
-						spelling: '/ɪɡˈzæmpl/',
-						meaning: 'something chosen to show what a whole is like',
-						partOfSpeech: 'noun',
-						commonPhrases: 'for example, set an example, follow the example',
-						soundSrc: '/static/mp3/example.mp3',
-						example: 'For example, this is a sentence using the word "example".'
+						spelling: '[ɪɡˈzɑːmpl]',
+						cx: 'n.',
+						m: "例子；实例；范例；典型；榜样；样品；例证；样板；模范；楷模",
+						en: "Can you give me an example of what you mean ? ",
+						ch: "你能给我举个实例来解释你的意思吗？",
+						class: ['cet6', 'cet4', '高考'],
+						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=example',
 					},
 					{
+						cp: 6,
 						name: 'apple',
-						spelling: '/ˈæpl/',
-						meaning: 'a round fruit with red or green skin and a whitish inside',
-						partOfSpeech: 'noun',
-						commonPhrases: 'an apple a day keeps the doctor away, apple pie, apple juice',
-						soundSrc: '/static/mp3/apple.mp3',
-						example: 'She eats an apple every day.'
+						spelling: '[ˈæpl]',
+						cx: 'n.',
+						m: "苹果",
+						en: "Have an apple to keep you going till dinner time ",
+						ch: "吃个苹果就能挨到吃晚饭了。",
+						class: ['cet6', 'cet4', '高考'],
+						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=apple',
 					},
 					{
-						name: 'banana',
-						spelling: '/bəˈnæn.ə/',
-						meaning: 'a long, curved fruit with a yellow skin and soft, sweet flesh',
-						partOfSpeech: 'noun',
-						commonPhrases: 'banana peel, banana split',
-						soundSrc: '/path/to/banana-sound.mp3',
-						example: 'He grabbed a banana as a snack.'
+						cp: 15,
+						name: 'miss',
+						spelling: '[mɪs]',
+						cx: 'v.',
+						m: "错过；不在；思念；迟到；未达到；避开（不愉快的事）；不懂；未击中；不做；不理解；未得到；未觉察；未见到；未听到；发觉丢失",
+						en: "The company has missed its profit forecast again. ",
+						ch: "公司又未达到其利润预测。",
+						class: ['cet6', 'cet4', '高考','小学'],
+						soundSrc: 'http://dict.youdao.com/dictvoice?type=0&audio=miss',
 					},
-					{
-						name: 'computer',
-						spelling: '/kəmˈpjuː.t̬ɚ/',
-						meaning: 'an electronic machine that can store and arrange large amounts of information, and do many different types of work',
-						partOfSpeech: 'noun',
-						commonPhrases: 'personal computer, laptop computer',
-						soundSrc: '/path/to/computer-sound.mp3',
-						example: 'I use a computer for work.'
-					}
+
+
 					// 可以继续添加更多的单词
 				],
 			};
@@ -89,13 +95,13 @@
 
 <style scoped>
 	.container {
-
 		height: 100vh;
 	}
 
 	.word {
+		margin-top: 10%;
 		font-size: 24px;
-		font-weight: bold;
+		/* 	font-weight: bold; */
 	}
 
 	.word-name-laba {
@@ -111,30 +117,50 @@
 		font-size: 16px;
 	}
 
-	.word-info text {
+	/* 	.word-info text {
 		display: block;
 		margin-bottom: 5px;
-	}
+	} */
+
 
 	.swiper {
 		height: 100%;
 	}
+
 	.bc-container {
 		margin-top: 20px;
-	   display: flex;
-	   align-items: center;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		margin-left: 10%;
 	}
-/* 	词频 */
-	 .bc{
-		 
-	  width: 3px;
-	  height: 10px;
-	  margin-right: 1px; /* 将间距调整为1% */
-	  background-color: #BFE5BF;
-	  border-radius: 2px; /* 添加圆角 */
+
+	/* 	词频 */
+	.bc {
+		width: 3px;
+		height: 10px;
+		margin-right: 1px;
+		/* 将间距调整为1% */
+		background-color: #BFE5BF;
+		border-radius: 2px;
+		/* 添加圆角 */
 	}
+.word-meaning{
+	margin-left: 10%;
+}
 	.bar:last-child {
-	  margin-right: 0; /* 最后一个小长条去掉右边距 */
+		margin-right: 0;
+		/* 最后一个小长条去掉右边距 */
 	}
-	
+
+	.card {
+		border-radius: 10px;
+		/* 圆角 */
+		background-color: #BFE5BF;
+		/* 白色背景 */
+		padding: 10px;
+		/* 可以根据需要调整内边距 */
+		margin-left: 10px;
+		/* 间距 */
+	}
 </style>

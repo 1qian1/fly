@@ -51,10 +51,21 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx6d9545bdc4e7d178",
-        "setting" : {
-            "urlCheck" : false
-        },
-        "usingComponents" : true,
+		"plugins": {
+					"WechatSI": {
+						"version": "0.3.3",
+						"provider": "wx069ba97219f66d99"
+					}
+				},
+				"setting": {
+					"urlCheck": false
+				},
+				"usingComponents": true,
+		
+  //       "setting" : {
+  //           "urlCheck" : false
+  //       },
+  //       "usingComponents" : true,
         "permission" : {}
     },
     "mp-alipay" : {

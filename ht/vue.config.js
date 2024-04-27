@@ -12,7 +12,7 @@ module.exports = {
     open: true,
     proxy: {
       '/kweb': { //拦截上下文
-        target: 'http://localhost:9999',//酒店
+        target: 'http://localhost:8084',//酒店
         // target: 'http://192.168.1.149:9999', //匹配到要代理的上下文后，将上下文前面的地址替换为此代理地址
         changeOrigin: true, //是否跨域
         pathRewrite: {

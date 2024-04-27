@@ -1,3 +1,4 @@
+//用户表
 CREATE TABLE Users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     nickname VARCHAR(255),
@@ -5,7 +6,7 @@ CREATE TABLE Users (
     email VARCHAR(255)
     -- 其他字段...
 );
-
+//回答表
 CREATE TABLE Answers (
     answer_id INT PRIMARY KEY AUTO_INCREMENT,
     question_id INT,
@@ -15,6 +16,7 @@ CREATE TABLE Answers (
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
     -- 其他字段和约束...
 );
+//问题表
 CREATE TABLE Questions (
     question_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
@@ -22,6 +24,7 @@ CREATE TABLE Questions (
     question_date DATETIME,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+//留言表
 CREATE TABLE Messages (
     message_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
@@ -29,6 +32,7 @@ CREATE TABLE Messages (
     messageDate DATETIME,
     FOREIGN KEY (userId) REFERENCES Users(user_id)
 );
+//见闻表
 CREATE TABLE IF NOT EXISTS news (
     news_id INT AUTO_INCREMENT PRIMARY KEY,
     news_title VARCHAR(255) NOT NULL,
@@ -37,6 +41,20 @@ CREATE TABLE IF NOT EXISTS news (
     publish_time datetime DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+//单词表
+CREATE TABLE Words (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    spelling VARCHAR(255) NOT NULL,
+    cp INT,
+    cx VARCHAR(10),
+    meaning TEXT NOT NULL,
+    english_example TEXT,
+    chinese_example TEXT,
+    word_class VARCHAR(255) NOT NULL,
+    sound_source VARCHAR(255)
+);
+
 
 
 

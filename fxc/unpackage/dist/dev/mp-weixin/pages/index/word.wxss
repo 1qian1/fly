@@ -1,11 +1,11 @@
 
 .container.data-v-33526fe0 {
-
 		height: 100vh;
 }
 .word.data-v-33526fe0 {
+		margin-top: 10%;
 		font-size: 24px;
-		font-weight: bold;
+		/* 	font-weight: bold; */
 }
 .word-name-laba.data-v-33526fe0 {
 		display: flex;
@@ -17,30 +17,47 @@
 		margin-top: 10px;
 		font-size: 16px;
 }
-.word-info text.data-v-33526fe0 {
+
+	/* 	.word-info text {
 		display: block;
 		margin-bottom: 5px;
-}
+	} */
 .swiper.data-v-33526fe0 {
 		height: 100%;
 }
 .bc-container.data-v-33526fe0 {
 		margin-top: 20px;
-	   display: flex;
-	   align-items: center;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		margin-left: 10%;
 }
 
 	/* 	词频 */
-.bc.data-v-33526fe0{
-		 
-	  width: 3px;
-	  height: 10px;
-	  margin-right: 1px; /* 将间距调整为1% */
-	  background-color: #BFE5BF;
-	  border-radius: 2px; /* 添加圆角 */
+.bc.data-v-33526fe0 {
+		width: 3px;
+		height: 10px;
+		margin-right: 1px;
+		/* 将间距调整为1% */
+		background-color: #BFE5BF;
+		border-radius: 2px;
+		/* 添加圆角 */
+}
+.word-meaning.data-v-33526fe0{
+	margin-left: 10%;
 }
 .bar.data-v-33526fe0:last-child {
-	  margin-right: 0; /* 最后一个小长条去掉右边距 */
+		margin-right: 0;
+		/* 最后一个小长条去掉右边距 */
 }
-	
+.card.data-v-33526fe0 {
+		border-radius: 10px;
+		/* 圆角 */
+		background-color: #BFE5BF;
+		/* 白色背景 */
+		padding: 10px;
+		/* 可以根据需要调整内边距 */
+		margin-left: 10px;
+		/* 间距 */
+}
 
